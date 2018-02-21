@@ -11,7 +11,8 @@ Beágyazott rendszerek szoftvertechnológia HF
 	- Ki kell nyírni egymást
 	- Health bar -> x lövést bír ki
 	- easy, medium, hard (élet és ellenfél életét befolyásolja)
-	
+	- Nyilakkal lehet mozogni, SPACE lövés, ESC kilépés főmenübe
+	- extra fícsör?? hangeffektek, zene
 	
  Játékmód
 	- Single
@@ -25,5 +26,18 @@ Beágyazott rendszerek szoftvertechnológia HF
 	
 	- Multiplayer
 		- 1 v 1 LAN-on keresztül
+		- 3 élet / játékos
+		- Új játék opció, mindkét játékosnak confirm-ot kell nyomnia
 		- Egyik játékos szerver, másik kliens
 		- ?? timeout
+
+Menürendszer
+	- Single player
+		- Nehézség választó
+		- ?? map select
+		- START
+	- Multi player
+		- HOST/JOIN
+			- HOST -> kiírja az IP cimét a hostnak
+			- JOIN - be kell írni a HOST IP-jét
+	- Credits
