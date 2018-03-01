@@ -1,0 +1,5 @@
+## Documentation (Latex stuff)
+/documentation/**.aux
+/documentation/**.log
+/documentation/**.gz
+/documentation/**.pdf ## Valszeg nem kell a generált pdf ha ott van a .tex
