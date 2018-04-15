@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_EF24sD8ZEei8hLI9hHrGDw" name="class_diagrams">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_EF24sD8ZEei8hLI9hHrGDw" name="class_diagrams">
   <packageImport xmi:type="uml:PackageImport" xmi:id="_EJzkkD8ZEei8hLI9hHrGDw">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
@@ -20,6 +20,8 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_BPNFoEDPEeiOGqQKXrlCHg" name="Score"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_wNOwYEDkEeiOGqQKXrlCHg" name="SyncClient"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_1fqTUEDkEeiOGqQKXrlCHg" name="GetInputs"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_6XFxkEC-EeiOGqQKXrlCHg" name="AITANK">
     <generalization xmi:type="uml:Generalization" xmi:id="_tciKMEC_EeiOGqQKXrlCHg" general="_hfSOsEC3EeiOGqQKXrlCHg"/>
@@ -32,12 +34,43 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_S179sEDNEeiOGqQKXrlCHg" name="Location">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_FSNBAEDPEeiOGqQKXrlCHg" name="Hit"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_tiaYoEDTEeiOGqQKXrlCHg" name="Move"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_Qdqz4EDPEeiOGqQKXrlCHg" name="World">
+  <packagedElement xmi:type="uml:Class" xmi:id="_Qdqz4EDPEeiOGqQKXrlCHg" name="Game">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_ThLoMEDPEeiOGqQKXrlCHg" name="WallSegmentGridLocation">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EByteArray"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_DMSgkEDTEeiOGqQKXrlCHg" name="TimeElapsed"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_9wMz4EDpEeiOGqQKXrlCHg" name="SingleOrMulti"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_BBlFEEDqEeiOGqQKXrlCHg" name="GameDifficulty"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_7e_mQEDpEeiOGqQKXrlCHg" name="GenerateEnemy"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_n44UkEDkEeiOGqQKXrlCHg" memberEnd="_n-PVskDkEeiOGqQKXrlCHg _n-PVs0DkEeiOGqQKXrlCHg">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_n-PVsEDkEeiOGqQKXrlCHg" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_n-PVsUDkEeiOGqQKXrlCHg" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_n-PVskDkEeiOGqQKXrlCHg" name="rocket" type="_EDgrMEDNEeiOGqQKXrlCHg" association="_n44UkEDkEeiOGqQKXrlCHg"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_n-PVs0DkEeiOGqQKXrlCHg" name="aitank" type="_6XFxkEC-EeiOGqQKXrlCHg" association="_n44UkEDkEeiOGqQKXrlCHg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_qRB3sEDkEeiOGqQKXrlCHg" memberEnd="_qRB3s0DkEeiOGqQKXrlCHg _qRB3tEDkEeiOGqQKXrlCHg">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_qRB3sUDkEeiOGqQKXrlCHg" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_qRB3skDkEeiOGqQKXrlCHg" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_qRB3s0DkEeiOGqQKXrlCHg" name="rocket" type="_EDgrMEDNEeiOGqQKXrlCHg" association="_qRB3sEDkEeiOGqQKXrlCHg"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_qRB3tEDkEeiOGqQKXrlCHg" name="playertank" type="_a1KRUEC9EeiOGqQKXrlCHg" association="_qRB3sEDkEeiOGqQKXrlCHg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_0NbkgEDmEeiOGqQKXrlCHg" name="NetworkInterface">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_4K6GsEDmEeiOGqQKXrlCHg" name="IsHost">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_72p_sEDmEeiOGqQKXrlCHg" name="MultiplayerMode">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Ag_n4EDnEeiOGqQKXrlCHg" name="ServerIP">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_z7uCEEDpEeiOGqQKXrlCHg" name="StartServer"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_1B6OEEDpEeiOGqQKXrlCHg" name="JoinServer"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_20DhIEDpEeiOGqQKXrlCHg" name="Terminate"/>
   </packagedElement>
 </uml:Model>
