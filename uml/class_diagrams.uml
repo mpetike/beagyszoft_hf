@@ -3,7 +3,41 @@
   <packageImport xmi:type="uml:PackageImport" xmi:id="_EJzkkD8ZEei8hLI9hHrGDw">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
-  <packagedElement xmi:type="uml:Class" xmi:id="_5klkoD9gEei10e-YG9QuaQ" name="Classtest"/>
-  <packagedElement xmi:type="uml:Class" xmi:id="_G_tF8D9hEei10e-YG9QuaQ" name="Class3"/>
-  <packagedElement xmi:type="uml:Abstraction" xmi:id="_JKaC8D9hEei10e-YG9QuaQ" name="test" client="_5klkoD9gEei10e-YG9QuaQ" supplier="_G_tF8D9hEei10e-YG9QuaQ"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_hfSOsEC3EeiOGqQKXrlCHg" name="TANK" isAbstract="true">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_TvouMEC_EeiOGqQKXrlCHg" name="Location">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_nY5MwEC_EeiOGqQKXrlCHg" name="Health">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_1nCtgEC_EeiOGqQKXrlCHg" name="Move"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_3d2eIEC_EeiOGqQKXrlCHg" name="Fire"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_smHDEEDAEeiOGqQKXrlCHg" name="Die"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_a1KRUEC9EeiOGqQKXrlCHg" name="PLAYERTANK">
+    <generalization xmi:type="uml:Generalization" xmi:id="_uRvT4EC_EeiOGqQKXrlCHg" general="_hfSOsEC3EeiOGqQKXrlCHg"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_toR0QEDMEeiOGqQKXrlCHg" name="LocalOrRemote">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_BPNFoEDPEeiOGqQKXrlCHg" name="Score"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_6XFxkEC-EeiOGqQKXrlCHg" name="AITANK">
+    <generalization xmi:type="uml:Generalization" xmi:id="_tciKMEC_EeiOGqQKXrlCHg" general="_hfSOsEC3EeiOGqQKXrlCHg"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_IrojUEDBEeiOGqQKXrlCHg" name="DifficultyModifier">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_4TDAwEC_EeiOGqQKXrlCHg" name="PathFind"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_EDgrMEDNEeiOGqQKXrlCHg" name="Rocket">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_S179sEDNEeiOGqQKXrlCHg" name="Location">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_FSNBAEDPEeiOGqQKXrlCHg" name="Hit"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_Qdqz4EDPEeiOGqQKXrlCHg" name="World">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_ThLoMEDPEeiOGqQKXrlCHg" name="WallSegmentGridLocation">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EByteArray"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_DMSgkEDTEeiOGqQKXrlCHg" name="TimeElapsed"/>
+  </packagedElement>
 </uml:Model>
