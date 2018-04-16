@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_EF24sD8ZEei8hLI9hHrGDw" name="class_diagrams">
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_EF24sD8ZEei8hLI9hHrGDw" name="class_diagrams">
   <packageImport xmi:type="uml:PackageImport" xmi:id="_EJzkkD8ZEei8hLI9hHrGDw">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
@@ -19,8 +19,10 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_G5u3EEGhEeiDvahUygPLiw" name="Speed">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_QNZEsEGqEeiDvahUygPLiw" name="IsAlive">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+    </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_2aYQEEGdEeiDvahUygPLiw" name="MoveForward"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_LhoWoEGeEeiDvahUygPLiw" name="CheckWorldCollision"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_4OwiUEGeEeiDvahUygPLiw" name="GameWorld">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_81Bi0EGeEeiDvahUygPLiw" name="MapGridArray">
@@ -35,7 +37,7 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_3Olz4EGgEeiDvahUygPLiw" name="AliveShells" type="_SPI7AEGfEeiDvahUygPLiw"/>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_7LWH4EGhEeiDvahUygPLiw" name="Score">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_7LWH4EGhEeiDvahUygPLiw" name="ScoreBoard">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9BLoIEGhEeiDvahUygPLiw" value="2"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9BX1YEGhEeiDvahUygPLiw" value="2"/>
@@ -44,6 +46,9 @@
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_dOcZ0EGiEeiDvahUygPLiw" name="RunNextFrameCalc"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_zjKKUEGoEeiDvahUygPLiw" name="CreateNewTank"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_VNQGYEGpEeiDvahUygPLiw" name="ShellLaunched"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_ZMj0kEGpEeiDvahUygPLiw" name="StartGame"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_Dk2Q0EGfEeiDvahUygPLiw" name="BaseTank">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_IgwxMEGfEeiDvahUygPLiw" name="Health">
@@ -52,22 +57,16 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_TtVscEGhEeiDvahUygPLiw" name="FireCooldown">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_D_IKUEGlEeiDvahUygPLiw" name="movingobject" type="_XMxkkEGdEeiDvahUygPLiw" association="_D-ssgEGlEeiDvahUygPLiw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_D_IxYEGlEeiDvahUygPLiw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_D_JYcEGlEeiDvahUygPLiw" value="1"/>
-    </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_LlOnwEGfEeiDvahUygPLiw" name="Rotate"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_PvoLoEGfEeiDvahUygPLiw" name="FireShell"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_a_bE4EGfEeiDvahUygPLiw" name="Die"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_JZOwoEGnEeiDvahUygPLiw" name="CheckForwardCollision"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_SPI7AEGfEeiDvahUygPLiw" name="CannonShell">
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_GoPhoUGlEeiDvahUygPLiw" name="movingobject" type="_XMxkkEGdEeiDvahUygPLiw" association="_GoOTgEGlEeiDvahUygPLiw">
-      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GoQIsEGlEeiDvahUygPLiw"/>
-      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GoQvwEGlEeiDvahUygPLiw" value="1"/>
-    </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_c8ToUEGfEeiDvahUygPLiw" name="Explode"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_pbZpcEGjEeiDvahUygPLiw" name="NextMove"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_tnLQ4EGkEeiDvahUygPLiw" name="CheckTankCollision"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_tnLQ4EGkEeiDvahUygPLiw" name="CheckOnTankCollision"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_3JkiQEGmEeiDvahUygPLiw" name="CheckOnWorldCollision"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_3TzggEGfEeiDvahUygPLiw" name="AiTank">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_7nF6oEGfEeiDvahUygPLiw" name="DifficultyModifier">
@@ -78,17 +77,13 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_vyHl0EGhEeiDvahUygPLiw" name="CheckLineOfSight"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_0zkGcEGhEeiDvahUygPLiw" name="PathFindToPlayer"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_YR81MEGjEeiDvahUygPLiw" name="PlayerTank"/>
-  <packagedElement xmi:type="uml:Association" xmi:id="_D-ssgEGlEeiDvahUygPLiw" memberEnd="_D_IKUEGlEeiDvahUygPLiw _D_JYcUGlEeiDvahUygPLiw">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_D-wW4EGlEeiDvahUygPLiw" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_D-w98EGlEeiDvahUygPLiw" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_D_JYcUGlEeiDvahUygPLiw" name="basetank" type="_Dk2Q0EGfEeiDvahUygPLiw" association="_D-ssgEGlEeiDvahUygPLiw"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_YR81MEGjEeiDvahUygPLiw" name="PlayerTank">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_6o168EGlEeiDvahUygPLiw" name="basetank" type="_Dk2Q0EGfEeiDvahUygPLiw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6o168UGlEeiDvahUygPLiw"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6o2iAEGlEeiDvahUygPLiw" value="1"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_jwBwIEGlEeiDvahUygPLiw" name="NextMove"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_FQmuYEGnEeiDvahUygPLiw" name="EvaluateInputs"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Association" xmi:id="_GoOTgEGlEeiDvahUygPLiw" memberEnd="_GoPhoUGlEeiDvahUygPLiw _GoQvwUGlEeiDvahUygPLiw">
-    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_GoO6kEGlEeiDvahUygPLiw" source="org.eclipse.papyrus">
-      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_GoPhoEGlEeiDvahUygPLiw" key="nature" value="UML_Nature"/>
-    </eAnnotations>
-    <ownedEnd xmi:type="uml:Property" xmi:id="_GoQvwUGlEeiDvahUygPLiw" name="cannonshell" type="_SPI7AEGfEeiDvahUygPLiw" association="_GoOTgEGlEeiDvahUygPLiw"/>
-  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_yASM4EGpEeiDvahUygPLiw" name="Explosion"/>
 </uml:Model>
