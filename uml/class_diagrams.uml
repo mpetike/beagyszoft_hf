@@ -58,7 +58,7 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_TtVscEGhEeiDvahUygPLiw" name="FireCooldown">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_LlOnwEGfEeiDvahUygPLiw" name="Rotate"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_LlOnwEGfEeiDvahUygPLiw" name="Rotate" visibility="private"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_PvoLoEGfEeiDvahUygPLiw" name="FireShell"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_a_bE4EGfEeiDvahUygPLiw" name="Die"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_JZOwoEGnEeiDvahUygPLiw" name="CheckForwardCollision"/>
