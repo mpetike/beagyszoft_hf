@@ -30,10 +30,10 @@
       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AVRWcEGfEeiDvahUygPLiw" value="2"/>
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AVsNMEGfEeiDvahUygPLiw" value="2"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_JvwecEGgEeiDvahUygPLiw" name="SingleOrMulti">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_JvwecEGgEeiDvahUygPLiw" name="SingleOrMulti" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
     </ownedAttribute>
-    <ownedAttribute xmi:type="uml:Property" xmi:id="_bKEZMEGgEeiDvahUygPLiw" name="TimeElapsed">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_bKEZMEGgEeiDvahUygPLiw" name="TimeElapsed" visibility="private">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_3Olz4EGgEeiDvahUygPLiw" name="AliveShells" type="_SPI7AEGfEeiDvahUygPLiw"/>
@@ -53,13 +53,14 @@
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_Tg1nYEVYEeidVObnSHWdJQ" name="AlivePlayerTanks" type="_YR81MEGjEeiDvahUygPLiw"/>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_cUt30EVYEeidVObnSHWdJQ" name="AliveAiTanks" type="_3TzggEGfEeiDvahUygPLiw"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_dOcZ0EGiEeiDvahUygPLiw" name="RunNextFrameCalc"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_zjKKUEGoEeiDvahUygPLiw" name="CreateNewTank"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_VNQGYEGpEeiDvahUygPLiw" name="ShellLaunched"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_dOcZ0EGiEeiDvahUygPLiw" name="RunNextFrameCalc" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_zjKKUEGoEeiDvahUygPLiw" name="CreateNewTank" visibility="private"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_ZMj0kEGpEeiDvahUygPLiw" name="StartGame"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_iM8XEES2EeijW8rOdZRwtQ" name="GetMovingObjects"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_4lGr4ES2EeijW8rOdZRwtQ" name="EndGame"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_9bJ00ES2EeijW8rOdZRwtQ" name="ServerUpdate"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_fl4JwEVcEeidVObnSHWdJQ" name="DestroyDeadThings" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_EiN9EEWGEeidVObnSHWdJQ" name="GetMovingObjects"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_VZcY4EWGEeidVObnSHWdJQ" name="GetRenderObjects"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_WrP_AEWGEeidVObnSHWdJQ" name="SetInputs"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_Z0bWcEWGEeidVObnSHWdJQ" name="IsGameOver"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_Dk2Q0EGfEeiDvahUygPLiw" name="BaseTank" isAbstract="true">
     <generalization xmi:type="uml:Generalization" xmi:id="_16CLAEG8EeiDvahUygPLiw" general="_XMxkkEGdEeiDvahUygPLiw"/>
@@ -74,7 +75,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_SPI7AEGfEeiDvahUygPLiw" name="CannonShell">
     <generalization xmi:type="uml:Generalization" xmi:id="_2i5h0EG8EeiDvahUygPLiw" general="_XMxkkEGdEeiDvahUygPLiw"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_c8ToUEGfEeiDvahUygPLiw" name="Explode"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_COhms0WHEeidVObnSHWdJQ" name="gameworld" type="_4OwiUEGeEeiDvahUygPLiw" association="_COhmsEWHEeidVObnSHWdJQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_COhmtEWHEeidVObnSHWdJQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_COhmtUWHEeidVObnSHWdJQ" value="1"/>
+    </ownedAttribute>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_c8ToUEGfEeiDvahUygPLiw" name="Explode" visibility="private"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_pbZpcEGjEeiDvahUygPLiw" name="NextMove"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_tnLQ4EGkEeiDvahUygPLiw" name="CheckOnTankCollision" visibility="private"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_3JkiQEGmEeiDvahUygPLiw" name="CheckOnWorldCollision" visibility="private"/>
@@ -96,8 +101,12 @@
       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6o2iAEGlEeiDvahUygPLiw" value="1"/>
     </ownedAttribute>
     <ownedAttribute xmi:type="uml:Property" xmi:id="_w3mLcESnEeijW8rOdZRwtQ" name="LocalOrRemote"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_6hRnI0WGEeidVObnSHWdJQ" name="gameworld" type="_4OwiUEGeEeiDvahUygPLiw" association="_6hRnIEWGEeidVObnSHWdJQ">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6hRnJEWGEeidVObnSHWdJQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6hRnJUWGEeidVObnSHWdJQ" value="1"/>
+    </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_jwBwIEGlEeiDvahUygPLiw" name="NextMove"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_FQmuYEGnEeiDvahUygPLiw" name="EvaluateInputs"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_FQmuYEGnEeiDvahUygPLiw" name="EvaluateInputs" visibility="private"/>
   </packagedElement>
   <packagedElement xmi:type="uml:StateMachine" xmi:id="_ltdZQEG9EeiDvahUygPLiw" name="Enemy tank life">
     <region xmi:type="uml:Region" xmi:id="_mg5BUEG9EeiDvahUygPLiw" name="Region1">
@@ -125,6 +134,37 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_GrKdEES2EeijW8rOdZRwtQ" name="Explosion">
     <generalization xmi:type="uml:Generalization" xmi:id="_V3O-oES2EeijW8rOdZRwtQ" general="_XMxkkEGdEeiDvahUygPLiw"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_RMnpoES2EeijW8rOdZRwtQ" name="CountDown" visibility="private"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_fHZG4EVwEeidVObnSHWdJQ" client="_SPI7AEGfEeiDvahUygPLiw" supplier="_GrKdEES2EeijW8rOdZRwtQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_jgJP0EVwEeidVObnSHWdJQ" client="_3TzggEGfEeiDvahUygPLiw" supplier="_SPI7AEGfEeiDvahUygPLiw"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_ktCgwEVwEeidVObnSHWdJQ" client="_YR81MEGjEeiDvahUygPLiw" supplier="_SPI7AEGfEeiDvahUygPLiw"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_pKj08EVwEeidVObnSHWdJQ" client="_4OwiUEGeEeiDvahUygPLiw" supplier="_3TzggEGfEeiDvahUygPLiw"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_sP5OMEVwEeidVObnSHWdJQ" client="_4OwiUEGeEeiDvahUygPLiw" supplier="_YR81MEGjEeiDvahUygPLiw"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_1Et30EWGEeidVObnSHWdJQ" memberEnd="_1FUUwEWGEeidVObnSHWdJQ _1FUUwUWGEeidVObnSHWdJQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1FKjwEWGEeidVObnSHWdJQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1FKjwUWGEeidVObnSHWdJQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_1FUUwEWGEeidVObnSHWdJQ" name="aitank" type="_3TzggEGfEeiDvahUygPLiw" association="_1Et30EWGEeidVObnSHWdJQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_1FUUwUWGEeidVObnSHWdJQ" name="gameworld" type="_4OwiUEGeEeiDvahUygPLiw" association="_1Et30EWGEeidVObnSHWdJQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_6hRnIEWGEeidVObnSHWdJQ" memberEnd="_6hRnI0WGEeidVObnSHWdJQ _6hRnJkWGEeidVObnSHWdJQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6hRnIUWGEeidVObnSHWdJQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6hRnIkWGEeidVObnSHWdJQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_6hRnJkWGEeidVObnSHWdJQ" name="playertank" type="_YR81MEGjEeiDvahUygPLiw" association="_6hRnIEWGEeidVObnSHWdJQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_-uGz8EWGEeidVObnSHWdJQ" memberEnd="_-uGz80WGEeidVObnSHWdJQ _-uGz9EWGEeidVObnSHWdJQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_-uGz8UWGEeidVObnSHWdJQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_-uGz8kWGEeidVObnSHWdJQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_-uGz80WGEeidVObnSHWdJQ" name="explosion" type="_GrKdEES2EeijW8rOdZRwtQ" association="_-uGz8EWGEeidVObnSHWdJQ"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_-uGz9EWGEeidVObnSHWdJQ" name="gameworld" type="_4OwiUEGeEeiDvahUygPLiw" association="_-uGz8EWGEeidVObnSHWdJQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_COhmsEWHEeidVObnSHWdJQ" memberEnd="_COhms0WHEeidVObnSHWdJQ _COhmtkWHEeidVObnSHWdJQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_COhmsUWHEeidVObnSHWdJQ" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_COhmskWHEeidVObnSHWdJQ" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_COhmtkWHEeidVObnSHWdJQ" name="cannonshell" type="_SPI7AEGfEeiDvahUygPLiw" association="_COhmsEWHEeidVObnSHWdJQ"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_QBpFsEHAEeiDvahUygPLiw">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QB0E0EHAEeiDvahUygPLiw" source="http://www.eclipse.org/uml2/2.0.0/UML">
