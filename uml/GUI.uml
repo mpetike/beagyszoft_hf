@@ -96,6 +96,8 @@ l</body>
   <packagedElement xmi:type="uml:Class" xmi:id="_xOm8sEHHEeiyMYhzTHFJjg" name="Network_Interface">
     <ownedOperation xmi:type="uml:Operation" xmi:id="_DiHwUEHIEeiyMYhzTHFJjg" name="startServer"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_Fw24wEHIEeiyMYhzTHFJjg" name="startClient"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_MQ-XIEVHEeij9oHET0eBzQ" name="initServer"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_OTxVUEVHEeij9oHET0eBzQ" name="initClient"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_79wnAEHHEeiyMYhzTHFJjg" memberEnd="_791fgEHHEeiyMYhzTHFJjg _792GkEHHEeiyMYhzTHFJjg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_79zqUEHHEeiyMYhzTHFJjg" source="org.eclipse.papyrus">
@@ -121,6 +123,17 @@ l</body>
     </eAnnotations>
     <ownedEnd xmi:type="uml:Property" xmi:id="_1vgDEkHJEeiyMYhzTHFJjg" name="menu" type="_5anv8EGHEeid3r8wx_WDUQ" association="_1vfcAEHJEeiyMYhzTHFJjg"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_1vgqIEHJEeiyMYhzTHFJjg" name="musicbox" type="_m82uIEHJEeiyMYhzTHFJjg" association="_1vfcAEHJEeiyMYhzTHFJjg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_SBN3cEVHEeij9oHET0eBzQ" name="TCPServer">
+    <generalization xmi:type="uml:Generalization" xmi:id="_yNJMYEVHEeij9oHET0eBzQ" general="_xOm8sEHHEeiyMYhzTHFJjg"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_ca0vkEVHEeij9oHET0eBzQ" name="createSocket"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_h9NaEEVHEeij9oHET0eBzQ" name="bind"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_jZqxAEVHEeij9oHET0eBzQ" name="accept"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_m5mbkEVHEeij9oHET0eBzQ" name="sendDatatoGameWorld"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_ugk0AEVHEeij9oHET0eBzQ" name="sendDatatoClient"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_aEzTYEVHEeij9oHET0eBzQ" name="TCPClient">
+    <generalization xmi:type="uml:Generalization" xmi:id="_2OKx0EVHEeij9oHET0eBzQ" general="_xOm8sEHHEeiyMYhzTHFJjg"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_Eu6usEGIEeid3r8wx_WDUQ">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Eu7VwEGIEeid3r8wx_WDUQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
