@@ -22,7 +22,7 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_QNZEsEGqEeiDvahUygPLiw" name="IsAlive">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
     </ownedAttribute>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_2aYQEEGdEeiDvahUygPLiw" name="MoveForward"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_2aYQEEGdEeiDvahUygPLiw" name="MoveForward" visibility="private"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_4OwiUEGeEeiDvahUygPLiw" name="GameWorld">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_81Bi0EGeEeiDvahUygPLiw" name="MapGridArray">
@@ -51,6 +51,8 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_ABezUES2EeijW8rOdZRwtQ" name="RemoteInputs">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
     </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_Tg1nYEVYEeidVObnSHWdJQ" name="AlivePlayerTanks" type="_YR81MEGjEeiDvahUygPLiw"/>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_cUt30EVYEeidVObnSHWdJQ" name="AliveAiTanks" type="_3TzggEGfEeiDvahUygPLiw"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_dOcZ0EGiEeiDvahUygPLiw" name="RunNextFrameCalc"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_zjKKUEGoEeiDvahUygPLiw" name="CreateNewTank"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_VNQGYEGpEeiDvahUygPLiw" name="ShellLaunched"/>
@@ -74,8 +76,8 @@
     <generalization xmi:type="uml:Generalization" xmi:id="_2i5h0EG8EeiDvahUygPLiw" general="_XMxkkEGdEeiDvahUygPLiw"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_c8ToUEGfEeiDvahUygPLiw" name="Explode"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_pbZpcEGjEeiDvahUygPLiw" name="NextMove"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_tnLQ4EGkEeiDvahUygPLiw" name="CheckOnTankCollision"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_3JkiQEGmEeiDvahUygPLiw" name="CheckOnWorldCollision"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_tnLQ4EGkEeiDvahUygPLiw" name="CheckOnTankCollision" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_3JkiQEGmEeiDvahUygPLiw" name="CheckOnWorldCollision" visibility="private"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_3TzggEGfEeiDvahUygPLiw" name="AiTank">
     <generalization xmi:type="uml:Generalization" xmi:id="_KeNhEEG6EeiDvahUygPLiw" general="_Dk2Q0EGfEeiDvahUygPLiw"/>
@@ -122,7 +124,7 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_GrKdEES2EeijW8rOdZRwtQ" name="Explosion">
     <generalization xmi:type="uml:Generalization" xmi:id="_V3O-oES2EeijW8rOdZRwtQ" general="_XMxkkEGdEeiDvahUygPLiw"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_RMnpoES2EeijW8rOdZRwtQ" name="CountDown"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_RMnpoES2EeijW8rOdZRwtQ" name="CountDown" visibility="private"/>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_QBpFsEHAEeiDvahUygPLiw">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QB0E0EHAEeiDvahUygPLiw" source="http://www.eclipse.org/uml2/2.0.0/UML">
