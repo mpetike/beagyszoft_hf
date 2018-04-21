@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_nsikoEGHEeid3r8wx_WDUQ" name="GUI">
+  <ownedComment xmi:type="uml:Comment" xmi:id="_T1MUkESZEei1Hvr48y7WqA">
+    <body>Ahhoz, hogy lehessen passzolgatni a játék aktuális állapotát, ami alapján rajzolja ki a gui a játékot, szökség van egy serializálható GameState osztályra amiből létrehozott objektumokat lehet majd átadni. Ez tartalmazza a tank objektumokat( hely, orientáció, élet), a lövedékeket ( hely, orientáció) és a robbanás helyét is. A user által lenyomott billentyűket pedig string formában kéne egy lifóban tárolni.&#xD;
+&#xD;
+l</body>
+  </ownedComment>
   <packageImport xmi:type="uml:PackageImport" xmi:id="_n6uKkEGHEeid3r8wx_WDUQ">
     <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
   </packageImport>
@@ -28,12 +33,13 @@
     <ownedAttribute xmi:type="uml:Property" xmi:id="_erfgQEGaEeijX9Im0tN00w" name="SERVERMODE">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
     </ownedAttribute>
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_1OgNMESaEei1Hvr48y7WqA" name="GAMEMODE"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_5anv9UGHEeid3r8wx_WDUQ" name="startGame"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_5anv9kGHEeid3r8wx_WDUQ" name="setOptions"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_5anv90GHEeid3r8wx_WDUQ" name="drawMenu"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_5anv-EGHEeid3r8wx_WDUQ" name="actionPerformed"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_FcdKIEGIEeid3r8wx_WDUQ" name="drawMenu"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_QGPMQEGIEeid3r8wx_WDUQ" name="startSinglePGame"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_QGPMQEGIEeid3r8wx_WDUQ" name="startGameWorld(GAMEMODE,SERVERMODE)"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_oin9cEGaEeijX9Im0tN00w" name="openMultiPMenu"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_w7S4kEGaEeijX9Im0tN00w" name="startMultiPGame"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_GCpTsEHFEeiyMYhzTHFJjg" name="initGameWorld"/>
@@ -57,10 +63,10 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_xCEy0EGWEeijX9Im0tN00w" name="checkEndGame"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_5F3DEEGWEeijX9Im0tN00w" name="loadMap"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_THtwgEGZEeijX9Im0tN00w" name="drawExplosion"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_U071YEGbEeijX9Im0tN00w" name="deserialize"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_gKpwcEGbEeijX9Im0tN00w" name="serialize"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_U071YEGbEeijX9Im0tN00w" name="deserializeGameState"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_gKpwcEGbEeijX9Im0tN00w" name="sendUserInput"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Class" xmi:id="_EW4h0EGLEeid3r8wx_WDUQ" name="JButton">
+  <packagedElement xmi:type="uml:Class" xmi:id="_EW4h0EGLEeid3r8wx_WDUQ" name="MenuButton">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_y-9-UEGLEeid3r8wx_WDUQ" name="LABEL">
       <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
     </ownedAttribute>
@@ -76,10 +82,9 @@
     <ownedEnd xmi:type="uml:Property" xmi:id="_I22GAEGLEeid3r8wx_WDUQ" name="menu" type="_5anv8EGHEeid3r8wx_WDUQ" association="_I2x0kEGLEeid3r8wx_WDUQ"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_a2V-MEGbEeijX9Im0tN00w" name="GameWorld">
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_whh4QEGbEeijX9Im0tN00w" name="deserialize"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_x_r4UEGbEeijX9Im0tN00w" name="serialize"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_x_r4UEGbEeijX9Im0tN00w" name="serializeGameState"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_jXLvUEHGEeiyMYhzTHFJjg" name="getUserInput"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_m2ZBIEHGEeiyMYhzTHFJjg" name="sendGameObjects"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_m2ZBIEHGEeiyMYhzTHFJjg" name="sendGameState"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_jwRMQEGbEeijX9Im0tN00w" memberEnd="_jwxikEGbEeijX9Im0tN00w _jwzXwEGbEeijX9Im0tN00w">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_jwvGUEGbEeijX9Im0tN00w" source="org.eclipse.papyrus">
@@ -107,6 +112,7 @@
     <ownedEnd xmi:type="uml:Property" xmi:id="_ZW7D8EHJEeiyMYhzTHFJjg" name="menu" type="_5anv8EGHEeid3r8wx_WDUQ" association="_ZW4nsEHJEeiyMYhzTHFJjg"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_m82uIEHJEeiyMYhzTHFJjg" name="MusicBox">
+    <ownedAttribute xmi:type="uml:Property" xmi:id="_W6KPgESbEei1Hvr48y7WqA" name="SONG"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_tEy8wEHJEeiyMYhzTHFJjg" name="playInfinite8bitMusic"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_1vfcAEHJEeiyMYhzTHFJjg" memberEnd="_1vgDEkHJEeiyMYhzTHFJjg _1vgqIEHJEeiyMYhzTHFJjg">
