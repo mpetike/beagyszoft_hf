@@ -169,6 +169,10 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Dk4tFkGfEeiDvahUygPLiw"/>
       </children>
       <children xmi:type="notation:BasicCompartment" xmi:id="_Dk4tF0GfEeiDvahUygPLiw" type="Class_OperationCompartment">
+        <children xmi:type="notation:Shape" xmi:id="_fDSLgEWHEeidVObnSHWdJQ" type="Operation_ClassOperationLabel">
+          <element xmi:type="uml:Operation" href="class_diagrams.uml#_fC_QkEWHEeidVObnSHWdJQ"/>
+          <layoutConstraint xmi:type="notation:Location" xmi:id="_fDSLgUWHEeidVObnSHWdJQ"/>
+        </children>
         <children xmi:type="notation:Shape" xmi:id="_LlaN8EGfEeiDvahUygPLiw" type="Operation_ClassOperationLabel">
           <element xmi:type="uml:Operation" href="class_diagrams.uml#_LlOnwEGfEeiDvahUygPLiw"/>
           <layoutConstraint xmi:type="notation:Location" xmi:id="_LlaN8UGfEeiDvahUygPLiw"/>

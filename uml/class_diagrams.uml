@@ -72,6 +72,7 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_a_bE4EGfEeiDvahUygPLiw" name="CheckIfDead" visibility="private"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_JZOwoEGnEeiDvahUygPLiw" name="CheckForwardCollision" visibility="private"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_YICOUESPEeijW8rOdZRwtQ" name="GetDamage"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_fC_QkEWHEeidVObnSHWdJQ" name="Die" visibility="private"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_SPI7AEGfEeiDvahUygPLiw" name="CannonShell">
     <generalization xmi:type="uml:Generalization" xmi:id="_2i5h0EG8EeiDvahUygPLiw" general="_XMxkkEGdEeiDvahUygPLiw"/>
