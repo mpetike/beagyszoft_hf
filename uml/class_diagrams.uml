@@ -111,16 +111,17 @@
   </packagedElement>
   <packagedElement xmi:type="uml:StateMachine" xmi:id="_ltdZQEG9EeiDvahUygPLiw" name="Enemy tank life">
     <region xmi:type="uml:Region" xmi:id="_mg5BUEG9EeiDvahUygPLiw" name="Region1">
-      <transition xmi:type="uml:Transition" xmi:id="_aBXeMEHAEeiDvahUygPLiw" source="_UB5PEEHAEeiDvahUygPLiw" target="_VwEoIEHAEeiDvahUygPLiw"/>
       <transition xmi:type="uml:Transition" xmi:id="_7JxBcEHLEeiDvahUygPLiw" source="_Oe780EHAEeiDvahUygPLiw" target="_ysesEEHLEeiDvahUygPLiw"/>
       <transition xmi:type="uml:Transition" xmi:id="_9N0j4EHLEeiDvahUygPLiw" name="Yes" source="_ysesEEHLEeiDvahUygPLiw" target="_UB5PEEHAEeiDvahUygPLiw"/>
-      <transition xmi:type="uml:Transition" xmi:id="_aiySwEHMEeiDvahUygPLiw" source="_HBFNsEHMEeiDvahUygPLiw" target="_ysesEEHLEeiDvahUygPLiw"/>
       <transition xmi:type="uml:Transition" xmi:id="_puRlgEHMEeiDvahUygPLiw" name="Yes" source="_g3RvoEHMEeiDvahUygPLiw" target="_m8_wsEHMEeiDvahUygPLiw"/>
       <transition xmi:type="uml:Transition" xmi:id="_sk3_MEHMEeiDvahUygPLiw" source="_m8_wsEHMEeiDvahUygPLiw" target="_HBFNsEHMEeiDvahUygPLiw"/>
       <transition xmi:type="uml:Transition" xmi:id="_ugRU4EHMEeiDvahUygPLiw" source="_kOqiMEHMEeiDvahUygPLiw" target="_HBFNsEHMEeiDvahUygPLiw"/>
       <transition xmi:type="uml:Transition" xmi:id="_vnyWkEHMEeiDvahUygPLiw" name="No" source="_g3RvoEHMEeiDvahUygPLiw" target="_kOqiMEHMEeiDvahUygPLiw"/>
       <transition xmi:type="uml:Transition" xmi:id="_xXxtgEHMEeiDvahUygPLiw" name="No" source="_ysesEEHLEeiDvahUygPLiw" target="_g3RvoEHMEeiDvahUygPLiw"/>
       <transition xmi:type="uml:Transition" xmi:id="_y9DpQEHMEeiDvahUygPLiw" source="_n4-OkEG9EeiDvahUygPLiw" target="_Oe780EHAEeiDvahUygPLiw"/>
+      <transition xmi:type="uml:Transition" xmi:id="_oCBcgEZVEeiq7-UVPX6OWg" name="Next Frame" source="_HBFNsEHMEeiDvahUygPLiw" target="_ysesEEHLEeiDvahUygPLiw"/>
+      <transition xmi:type="uml:Transition" xmi:id="_yDUiUEZVEeiq7-UVPX6OWg" source="_UB5PEEHAEeiDvahUygPLiw" target="_U_6dgEZVEeiq7-UVPX6OWg"/>
+      <transition xmi:type="uml:Transition" xmi:id="_zFzTAEZVEeiq7-UVPX6OWg" source="_U_6dgEZVEeiq7-UVPX6OWg" target="_VwEoIEHAEeiDvahUygPLiw"/>
       <subvertex xmi:type="uml:Pseudostate" xmi:id="_n4-OkEG9EeiDvahUygPLiw" name="Created by gamelogic"/>
       <subvertex xmi:type="uml:State" xmi:id="_Oe780EHAEeiDvahUygPLiw" name="Ready for move"/>
       <subvertex xmi:type="uml:State" xmi:id="_UB5PEEHAEeiDvahUygPLiw" name="Dead"/>
@@ -130,13 +131,15 @@
       <subvertex xmi:type="uml:Pseudostate" xmi:id="_g3RvoEHMEeiDvahUygPLiw" name="LineOfSight ??" kind="choice"/>
       <subvertex xmi:type="uml:State" xmi:id="_kOqiMEHMEeiDvahUygPLiw" name="MoveToPLayer"/>
       <subvertex xmi:type="uml:State" xmi:id="_m8_wsEHMEeiDvahUygPLiw" name="Fire"/>
+      <subvertex xmi:type="uml:State" xmi:id="_U_6dgEZVEeiq7-UVPX6OWg" name="Set IsAlive to false"/>
     </region>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_GrKdEES2EeijW8rOdZRwtQ" name="Explosion">
     <generalization xmi:type="uml:Generalization" xmi:id="_V3O-oES2EeijW8rOdZRwtQ" general="_XMxkkEGdEeiDvahUygPLiw"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_RMnpoES2EeijW8rOdZRwtQ" name="CountDown" visibility="private"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_XiMGoEZNEeiq7-UVPX6OWg" name="NextMove"/>
   </packagedElement>
-  <packagedElement xmi:type="uml:Realization" xmi:id="_fHZG4EVwEeidVObnSHWdJQ" client="_SPI7AEGfEeiDvahUygPLiw" supplier="_GrKdEES2EeijW8rOdZRwtQ"/>
+  <packagedElement xmi:type="uml:Realization" xmi:id="_fHZG4EVwEeidVObnSHWdJQ" client="_SPI7AEGfEeiDvahUygPLiw" supplier="_EF24sD8ZEei8hLI9hHrGDw"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_jgJP0EVwEeidVObnSHWdJQ" client="_3TzggEGfEeiDvahUygPLiw" supplier="_SPI7AEGfEeiDvahUygPLiw"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_ktCgwEVwEeidVObnSHWdJQ" client="_YR81MEGjEeiDvahUygPLiw" supplier="_SPI7AEGfEeiDvahUygPLiw"/>
   <packagedElement xmi:type="uml:Realization" xmi:id="_pKj08EVwEeidVObnSHWdJQ" client="_4OwiUEGeEeiDvahUygPLiw" supplier="_3TzggEGfEeiDvahUygPLiw"/>
