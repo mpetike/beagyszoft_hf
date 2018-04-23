@@ -66,12 +66,12 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_2W9ugEZlEeiPKvP1nfTdvw" name="callSetInputs"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_M3uJMEZnEeiPKvP1nfTdvw" name="initGameWorld"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_yQ_PQEZzEeiPKvP1nfTdvw" name="callStartGame"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_U3kBsEZ0EeiPKvP1nfTdvw" name="callSendStatetoClient"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_a2V-MEGbEeijX9Im0tN00w" name="GameWorld">
     <ownedOperation xmi:type="uml:Operation" xmi:id="_x_r4UEGbEeijX9Im0tN00w" name="serializeGameState"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_jXLvUEHGEeiyMYhzTHFJjg" name="SetInputs"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_87ECwEZnEeiPKvP1nfTdvw" name="callUpdateFrame"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_87ECwEZnEeiPKvP1nfTdvw" name="callUpdateObjects"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_TKU3QEaJEeiPKvP1nfTdvw" name="callSendStatetoClient"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_SBN3cEVHEeij9oHET0eBzQ" name="TCPServer">
     <generalization xmi:type="uml:Generalization" xmi:id="_xTh2kEZ1EeiPKvP1nfTdvw" general="_tmBDAEZ1EeiPKvP1nfTdvw"/>
@@ -99,7 +99,7 @@
     </ownedAttribute>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_99A54EZlEeiPKvP1nfTdvw" name="createSocket"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="__yvFYEZlEeiPKvP1nfTdvw" name="connect"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_A7rqcEZmEeiPKvP1nfTdvw" name="sendUserInputs"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_A7rqcEZmEeiPKvP1nfTdvw" name="sendUserInputToServer"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_GkYYUEZmEeiPKvP1nfTdvw" name="getGameState"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_33MgQEZnEeiPKvP1nfTdvw" name="callUpdateObjects"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_12Zk0EZ1EeiPKvP1nfTdvw" name="run"/>
