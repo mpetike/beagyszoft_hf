@@ -72,3 +72,9 @@ local.properties
 *.aux
 *.log
 *.gz
+
+# VISO
+*.~vsdx
+
+# Misc.
+documentation/temp/**
