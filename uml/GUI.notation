@@ -283,7 +283,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TVzHMEV7EeiZD_57yytCiw"/>
     </children>
     <element xmi:type="uml:Class" href="GUI.uml#_TUopgEV7EeiZD_57yytCiw"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TVuOoUV7EeiZD_57yytCiw" x="220" y="20" width="175" height="172"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_TVuOoUV7EeiZD_57yytCiw" x="180" y="20" width="175" height="172"/>
   </children>
   <styles xmi:type="notation:StringValueStyle" xmi:id="_tiuU4UGHEeid3r8wx_WDUQ" name="diagram_compatibility_version" stringValue="1.3.0"/>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_tiuU4kGHEeid3r8wx_WDUQ"/>
