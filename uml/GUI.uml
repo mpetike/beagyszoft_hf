@@ -47,10 +47,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_a2V-MEGbEeijX9Im0tN00w" name="GameWorld">
     <ownedOperation xmi:type="uml:Operation" xmi:id="_x_r4UEGbEeijX9Im0tN00w" name="serializeGameState"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_jXLvUEHGEeiyMYhzTHFJjg" name="getInputs"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_87ECwEZnEeiPKvP1nfTdvw" name="updateObjects"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_jXLvUEHGEeiyMYhzTHFJjg" name="SetInputs"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_87ECwEZnEeiPKvP1nfTdvw" name="GetMovingObjects"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_TKU3QEaJEeiPKvP1nfTdvw" name="sendStatetoClient"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_RM3kAEelEeiX7v0icm65Rw" name="isGameOver"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_20KGsEerEeia0vYOFXCDjw" name="StartGame"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_SBN3cEVHEeij9oHET0eBzQ" name="TCPServer">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_AsrK0EZ2EeiPKvP1nfTdvw" name="myIP">
