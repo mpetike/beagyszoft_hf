@@ -39,8 +39,8 @@
     <ownedOperation xmi:type="uml:Operation" xmi:id="_bTuLwEdDEeiX7v0icm65Rw" name="keyboardActionPerformed" visibility="private"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_kYGWUEdDEeiX7v0icm65Rw" name="updateObjects"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_nIVpUEdDEeiX7v0icm65Rw" name="backToMenu"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_q8VfYEdDEeiX7v0icm65Rw" name="checkEndGame" visibility="public"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_Ig37UEdEEeiX7v0icm65Rw" name="StartGame"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_q8VfYEdDEeiX7v0icm65Rw" name="gameOver" visibility="public"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_Ig37UEdEEeiX7v0icm65Rw" name="startGame"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_huMfYEdEEeiX7v0icm65Rw" name="showScoreboard"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_lasmUEdEEeiX7v0icm65Rw" name="deserializeGameState"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_oHCQwEdEEeiX7v0icm65Rw" name="sendUserInput"/>
@@ -48,8 +48,9 @@
   <packagedElement xmi:type="uml:Class" xmi:id="_a2V-MEGbEeijX9Im0tN00w" name="GameWorld">
     <ownedOperation xmi:type="uml:Operation" xmi:id="_x_r4UEGbEeijX9Im0tN00w" name="serializeGameState"/>
     <ownedOperation xmi:type="uml:Operation" xmi:id="_jXLvUEHGEeiyMYhzTHFJjg" name="getInputs"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_87ECwEZnEeiPKvP1nfTdvw" name="UpdateObjects"/>
-    <ownedOperation xmi:type="uml:Operation" xmi:id="_TKU3QEaJEeiPKvP1nfTdvw" name="SendStatetoClient"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_87ECwEZnEeiPKvP1nfTdvw" name="updateObjects"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_TKU3QEaJEeiPKvP1nfTdvw" name="sendStatetoClient"/>
+    <ownedOperation xmi:type="uml:Operation" xmi:id="_RM3kAEelEeiX7v0icm65Rw" name="isGameOver"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Class" xmi:id="_SBN3cEVHEeij9oHET0eBzQ" name="TCPServer">
     <ownedAttribute xmi:type="uml:Property" xmi:id="_AsrK0EZ2EeiPKvP1nfTdvw" name="myIP">
