@@ -2,7 +2,7 @@ package hu.bme.mit.battle_city.gui;
 
 import javax.swing.JFrame;
 
-import java.awt.Color;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +12,8 @@ import java.util.Map;
 public class Menu extends JFrame {
 
 	private static final long serialVersionUID = -6211743596073270671L;
-
+	public int difficulty = 0;
+	
 	public enum PanelId {
 		GAME_MODE_SELECTOR,CHOOSE_DIFFICULTY, LEVEL_SELECTOR, MULTIPLAYER_PANEL, SERVER_PANEL, CLIENT_PANEL, GAME_FIELD, GET_NAME_PANEL, TOPLIST, ERROR_PANEL
 	}
@@ -33,9 +34,9 @@ public class Menu extends JFrame {
 		mPanels.put(PanelId.CHOOSE_DIFFICULTY, new ChooseDifficulty(this));
 		//mPanels.put(PanelId.LEVEL_SELECTOR, new LevelSelectorPanel(this));
 		mPanels.put(PanelId.MULTIPLAYER_PANEL, new MultiplayerPanel(this));
-	//	mPanels.put(PanelId.SERVER_PANEL, new ServerPanel(this));
+	  //	mPanels.put(PanelId.SERVER_PANEL, new ServerPanel(this));
 		//mPanels.put(PanelId.CLIENT_PANEL, new ClientPanel(this));
-		//mPanels.put(PanelId.GAME_FIELD, new GameField(this));
+		mPanels.put(PanelId.GAME_FIELD, new GameField(this));
 		//mPanels.put(PanelId.TOPLIST, new Toplist(this));
 		// TODO: többi panel osztályból példány létrehozása
 
@@ -43,7 +44,7 @@ public class Menu extends JFrame {
 	}
 
 	/**
-	 * A {@link PanelId}-val azonosított felhasználói felület elem megjelenítése
+	 * A {@link PanelId}-val azonos�tott felhaszn�l�i fel�let elem megjelen�t�se
 	 * 
 	 * @param panelId
 	 */

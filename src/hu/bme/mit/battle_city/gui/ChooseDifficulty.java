@@ -27,7 +27,8 @@ public class ChooseDifficulty extends MenuPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				mWindow.showPanel(PanelId.SERVER_PANEL);
+				mWindow.showPanel(PanelId.GAME_FIELD);
+				mWindow.difficulty = 1;
 			}
 		});
 
@@ -36,7 +37,8 @@ public class ChooseDifficulty extends MenuPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				mWindow.showPanel(PanelId.CLIENT_PANEL);
+				mWindow.showPanel(PanelId.GAME_FIELD);
+				mWindow.difficulty = 2;
 			}
 		});
 		mBtnHard = new JButton("Hard");
@@ -44,7 +46,8 @@ public class ChooseDifficulty extends MenuPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				mWindow.showPanel(PanelId.CLIENT_PANEL);
+				mWindow.showPanel(PanelId.GAME_FIELD);
+				mWindow.difficulty = 3;
 			}
 		});
 		

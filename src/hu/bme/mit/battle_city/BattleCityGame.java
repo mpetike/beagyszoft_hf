@@ -2,18 +2,16 @@ package hu.bme.mit.battle_city;
 
 import hu.bme.mit.battle_city.gui.Menu;
 
-import java.awt.Color;
-
 import javax.swing.SwingUtilities;
 
 /**
- * A program bel√©p√©si pontja
+ * A program belÈpÈsi pontja
  */
 public class BattleCityGame {
 
 	public static void main(String[] args) {
-		// A grafikus fel√ºletet a Swing saj√°t esem√©nykezel≈ë sz√°l√°n kell
-		// l√©trehozni
+		// A grafikus fel¸letet a Swing saj·t esemÈnykezelo sz·l·n kell
+		// lÈtrehozni
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
@@ -24,8 +22,8 @@ public class BattleCityGame {
 	}
 
 	private static void showWindow() {
-		Menu gameWindow = new Menu();
-		gameWindow.setSize(600, 600); 
-		gameWindow.setVisible(true);
+		Menu mainMenu = new Menu();
+		mainMenu.setSize(600, 640); 
+		mainMenu.setVisible(true);
 	}
 }
