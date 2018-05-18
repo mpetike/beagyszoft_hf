@@ -3,14 +3,34 @@ package hu.bme.mit.battle_city.GameLogic;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 
 
-public class MapLoadUtility {	
+public class GameLogicUtility {	
+	
+	public static int[] RandomPositionGen(boolean[][] map) {
+		int[] random_pos = new int[2];
+		int y = 0,x = 0;
+		
+		Random rand = new Random();
+		
+		boolean SpaceOccupied = true;
+		
+		while(SpaceOccupied == true) {
+			y = rand.nextInt(15);
+			x = rand.nextInt(15);
+			if(map[y][x] == false)
+				SpaceOccupied = false;
+		}
+		random_pos[0] = y;
+		random_pos[1] = x;
+		return random_pos;
+	}
 	
 	public static boolean[][] LoadMapFromFile(String path) {
 		boolean[][] map_loaded = new boolean[15][15];
 		
-		//Open file and load into bufferreader
+		//Open file and load into buffer reader
 		FileReader mapfile;
 		BufferedReader mapfile_reader;
 		

@@ -7,4 +7,12 @@ public class BaseTank extends MovingObject{
 		if(Heading == 0)
 			IsAlive = false;
 	}
+	
+	public void GetDamage() {
+		Health = Health - 1;
+	}
+	
+	private void rotate(int LeftRight) {
+		if(LeftRight == )
+	}
 }
