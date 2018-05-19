@@ -20,8 +20,8 @@ public abstract class MenuPanel extends JPanel {
 
 	protected final Logger logger = Logger.getLogger(this.getClass().getName());
 
-	public MenuPanel(Menu menuWindow) {
-		mWindow = menuWindow;
+	public MenuPanel(Menu menuWindow) { // konstruktor
+		mWindow = menuWindow;  // fo menu object átad a létrehozott menupanel leszarmaztatott panelnak: pl chossdiff,gamemodeselector
 	}
 
 	protected JButton getBackButton(PanelId panel) {
@@ -40,14 +40,15 @@ public abstract class MenuPanel extends JPanel {
 		bck.setBounds(40,240,100,30);
 		add(bck);
 		
-	 * Akkor hÃ­vÃ³dik, amikor a panel megjelenik
+	 *
+	 * Akkor hívódik, amikor a panel megjelenik
 	 */
 	protected void onShow() {
 
 	}
 
 	/**
-	 * Akkor hÃ­vÃ³dik, amikor a panel helyÃ©re mÃ¡sik kerÃ¼l
+	 * Akkor hívódik, amikor a panel helyére másik kerül
 	 */
 	protected void onHide() {
 
