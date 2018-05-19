@@ -63,29 +63,20 @@ public class GameField extends MenuPanel implements KeyListener {
         setBackground(Color.BLACK);
     }
 	
+
+	
+	public void updateRemoteFrame() 
+	{
+		//deserialize gameworld from tcp client
+		
+	}
+	
     
     public void updateFrame()
 		{
     	 repaint();
 		}
     
-   /* Gameworldbe hogy menjen:
-    * 
-    * private GameField gameField;
-    * 
-    * GameWorld(String map_path, boolean sp_mode, int difficulty,Queue<Integer> InputQueue,Queue<Integer> RemoteInput, GameField gameFieldObj)
-    * 	gameField = gameFieldObj;
-    * 
-    * 
-    SwingUtilities.invokeLater(new Runnable() 
-    {
-      public void run()
-      {
-    	  gameFieldobj,updateFrame();
-      }		
-    });
-    
-    */
     
 	@Override
 	public void paint(Graphics g) {
