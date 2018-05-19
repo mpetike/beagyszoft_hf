@@ -18,16 +18,16 @@ public class ChooseDifficulty extends MenuPanel {
 	private JButton mBtnMedium;
 	private JButton mBtnHard;
 	private JButton mBtnBack;
+
 	public ChooseDifficulty(Menu menuWindow) {
 		super(menuWindow);
-
 
 		mBtnEasy = new JButton("Easy");
 		mBtnEasy.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				mWindow.showPanel(PanelId.GAME_FIELD);
+				mWindow.showPanel(PanelId.MAP_SELECTOR);
 				mWindow.difficulty = 1;
 			}
 		});
@@ -37,7 +37,7 @@ public class ChooseDifficulty extends MenuPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				mWindow.showPanel(PanelId.GAME_FIELD);
+				mWindow.showPanel(PanelId.MAP_SELECTOR);
 				mWindow.difficulty = 2;
 			}
 		});
@@ -46,22 +46,25 @@ public class ChooseDifficulty extends MenuPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				mWindow.showPanel(PanelId.GAME_FIELD);
+				mWindow.showPanel(PanelId.MAP_SELECTOR);
 				mWindow.difficulty = 3;
 			}
 		});
-		
+
 		setLayout(null);
 		mBtnBack = getBackButton(PanelId.GAME_MODE_SELECTOR);
-		mBtnEasy.setBounds(150,100,250,100);
-		mBtnMedium.setBounds(150,200,250,100);
-		mBtnHard.setBounds(150,300,250,100);
-		mBtnBack.setBounds(150,450,250,50);
+		mBtnEasy.setBounds(150, 100, 250, 100);
+		mBtnMedium.setBounds(150, 200, 250, 100);
+		mBtnHard.setBounds(150, 300, 250, 100);
+		mBtnBack.setBounds(150, 450, 250, 50);
+
 		Font bSize18 = new Font("Arial", Font.PLAIN, 18);
+
 		mBtnEasy.setFont(bSize18);
-		mBtnMedium.setFont(bSize18);	
-		mBtnHard.setFont(bSize18);	
-		mBtnBack.setFont(bSize18);	
+		mBtnMedium.setFont(bSize18);
+		mBtnHard.setFont(bSize18);
+		mBtnBack.setFont(bSize18);
+
 		add(mBtnEasy);
 		add(mBtnMedium);
 		add(mBtnHard);

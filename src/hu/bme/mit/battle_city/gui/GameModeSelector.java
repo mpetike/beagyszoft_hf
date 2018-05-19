@@ -26,6 +26,7 @@ public class GameModeSelector extends MenuPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				menuWindow.gameMode = 0;
 				menuWindow.showPanel(PanelId.CHOOSE_DIFFICULTY);
 			}
 		});

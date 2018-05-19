@@ -12,10 +12,14 @@ import java.util.Map;
 public class Menu extends JFrame {
 
 	private static final long serialVersionUID = -6211743596073270671L;
-	public int difficulty = 0;
+	public String MapFolder = "mapfiles/";
+	public String currentMap; 
+	public int difficulty;
+	public int gameMode; // 0-single, 1-MultiServer, 2-MultiClient
+	public int serverPort = 5555;
 	
 	public enum PanelId {
-		GAME_MODE_SELECTOR,CHOOSE_DIFFICULTY, LEVEL_SELECTOR, MULTIPLAYER_PANEL, SERVER_PANEL, CLIENT_PANEL, GAME_FIELD, GET_NAME_PANEL, TOPLIST, ERROR_PANEL
+		GAME_MODE_SELECTOR,CHOOSE_DIFFICULTY, MAP_SELECTOR, MULTIPLAYER_PANEL, SERVER_PANEL, CLIENT_PANEL, GAME_FIELD, GET_NAME_PANEL, TOPLIST, ERROR_PANEL
 	}
 	private Map<PanelId, MenuPanel> mPanels = new HashMap<>();
 	private MenuPanel mCurrentPanel = null;
@@ -32,13 +36,12 @@ public class Menu extends JFrame {
 	private void initComponents() {
 		mPanels.put(PanelId.GAME_MODE_SELECTOR, new GameModeSelector(this));
 		mPanels.put(PanelId.CHOOSE_DIFFICULTY, new ChooseDifficulty(this));
-		//mPanels.put(PanelId.LEVEL_SELECTOR, new LevelSelectorPanel(this));
+		mPanels.put(PanelId.MAP_SELECTOR, new MapSelector(this));
 		mPanels.put(PanelId.MULTIPLAYER_PANEL, new MultiplayerPanel(this));
-	  //	mPanels.put(PanelId.SERVER_PANEL, new ServerPanel(this));
-		//mPanels.put(PanelId.CLIENT_PANEL, new ClientPanel(this));
+	    mPanels.put(PanelId.SERVER_PANEL, new ServerPanel(this));
+		mPanels.put(PanelId.CLIENT_PANEL, new ClientPanel(this));
 		mPanels.put(PanelId.GAME_FIELD, new GameField(this));
-		//mPanels.put(PanelId.TOPLIST, new Toplist(this));
-		// TODO: többi panel osztályból példány létrehozása
+
 
 		showPanel(PanelId.GAME_MODE_SELECTOR);
 	}
