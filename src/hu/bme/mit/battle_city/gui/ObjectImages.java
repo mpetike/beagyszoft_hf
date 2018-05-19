@@ -86,9 +86,9 @@ public class ObjectImages {
     	case 0:
 				switch (heading)
 		        {
-		        case 0:  image =  myTankDown;  break;
+		        case 2:  image =  myTankDown;  break;
 		        case 1:  image =  myTankRight; break;
-		        case 2:  image =  myTankUp;    break;
+		        case 0:  image =  myTankUp;    break;
 		        case 3:  image =  myTankLeft;  break;
 		        default: image =  myTankUp;    break;
 		        
@@ -97,9 +97,9 @@ public class ObjectImages {
     	case 1:
 				switch (heading)
 		        {
-		        case 0:  image =  enemyTankDown;  break;
+		        case 2:  image =  enemyTankDown;  break;
 		        case 1:  image =  enemyTankRigth; break;
-		        case 2:  image =  enemyTankUp;    break;
+		        case 0:  image =  enemyTankUp;    break;
 		        case 3:  image =  enemyTankLeft;  break;
 		        default: image =  enemyTankUp;    break;
 		        
@@ -108,9 +108,9 @@ public class ObjectImages {
     	case 2:
 				switch (heading)
 		        {
-		        case 0:  image =  rocketDown;  break;
+		        case 2:  image =  rocketDown;  break;
 		        case 1:  image =  rocketRight; break;
-		        case 2:  image =  rocketUp;    break;
+		        case 0:  image =  rocketUp;    break;
 		        case 3:  image =  rocketLeft;  break;
 		        default: image =  rocketUp;    break;
 		        

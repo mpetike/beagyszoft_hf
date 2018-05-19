@@ -63,29 +63,20 @@ public class GameField extends MenuPanel implements KeyListener {
         setBackground(Color.BLACK);
     }
 	
+
+	
+	public void updateRemoteFrame() 
+	{
+		//deserialize gameworld from tcp client
+		
+	}
+	
     
     public void updateFrame()
 		{
     	 repaint();
 		}
     
-   /* Gameworldbe hogy menjen:
-    * 
-    * private GameField gameField;
-    * 
-    * GameWorld(String map_path, boolean sp_mode, int difficulty,Queue<Integer> InputQueue,Queue<Integer> RemoteInput, GameField gameFieldObj)
-    * 	gameField = gameFieldObj;
-    * 
-    * 
-    SwingUtilities.invokeLater(new Runnable() 
-    {
-      public void run()
-      {
-    	  gameFieldobj,updateFrame();
-      }		
-    });
-    
-    */
     
 	@Override
 	public void paint(Graphics g) {
@@ -114,7 +105,7 @@ public class GameField extends MenuPanel implements KeyListener {
     	{
     		
             BufferedImage playerTankImg = objIm.getImg(0,playerTank.Heading);
-            g.drawImage(playerTankImg, playerTank.GridLocX, playerTank.GridLocY, this); 
+            g.drawImage(playerTankImg, playerTank.GridLocX*40, playerTank.GridLocY*40, this); 
             
     	}
     	
@@ -124,7 +115,7 @@ public class GameField extends MenuPanel implements KeyListener {
     	{
     		
             BufferedImage tankImg = objIm.getImg(1,tank.Heading);
-            g.drawImage(tankImg, tank.GridLocX, tank.GridLocY, this); 
+            g.drawImage(tankImg, tank.GridLocX*40, tank.GridLocY*40, this); 
             
     	}    	
     	
@@ -135,7 +126,7 @@ public class GameField extends MenuPanel implements KeyListener {
     	{
     		
             BufferedImage cannonImg = objIm.getImg(2,cannon.Heading);
-            g.drawImage(cannonImg, cannon.GridLocX, cannon.GridLocY, this); 
+            g.drawImage(cannonImg, cannon.GridLocX*40, cannon.GridLocY*40, this); 
             
     	}
     	
@@ -145,7 +136,7 @@ public class GameField extends MenuPanel implements KeyListener {
     	{
     		
             BufferedImage explosionImg = objIm.getImg(3,explosion.Heading);
-            g.drawImage(explosionImg, explosion.GridLocX, explosion.GridLocY, this); 
+            g.drawImage(explosionImg, explosion.GridLocX*40, explosion.GridLocY*40, this); 
             
     	}    	
     	
