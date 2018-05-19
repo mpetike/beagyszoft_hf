@@ -1,7 +1,7 @@
 package hu.bme.mit.battle_city.GameLogic;
 
 public class BaseTank extends MovingObject{
-	private int Health;
+	protected int Health;
 	
 	private void Die() {
 		if(Heading == 0)
@@ -12,7 +12,6 @@ public class BaseTank extends MovingObject{
 		Health = Health - 1;
 	}
 	
-	private void rotate(int LeftRight) {
-		if(LeftRight == )
+	protected void rotate(int LeftRight) {
 	}
 }

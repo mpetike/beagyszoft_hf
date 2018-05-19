@@ -4,11 +4,11 @@ public class MovingObject {
 	public int GridLocX;
 	public int GridLocY;
 	public int Heading;
-	private int CoolDown;
-	private int Speed;
+	protected double CoolDown;
+	protected double Speed;
 	public boolean IsAlive;
 	
-	private void MoveForward() {
+	protected void MoveForward() {
 		if(Heading == 0)
 			GridLocY--;
 		else if(Heading == 1)
