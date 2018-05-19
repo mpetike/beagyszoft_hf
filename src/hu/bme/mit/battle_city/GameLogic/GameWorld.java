@@ -19,10 +19,13 @@ public class GameWorld implements Runnable{
 	public ArrayList<CannonShell> AliveShells;
 	public ArrayList<Explosion> ActiveExplosions;
 	//Frame timing
-	public int FrameTime = 300;
+	public int FrameTime = 33;
 	//Thread variables
 	private Thread GameLogicThread;
-	
+	//Input queues
+	Queue<Integer> LocalPlayerQueue;
+	Queue<Integer> RemotePlayerQueue;
+	//Object holding renderer
 	public GameField gamfield;
 	
 	/**
@@ -43,6 +46,8 @@ public class GameWorld implements Runnable{
 		AliveShells = new ArrayList<CannonShell>();
 		ActiveExplosions = new ArrayList<Explosion>();
 		gamfield = gameFieldObj;
+		LocalPlayerQueue = InputQueue;	//Local player inputs
+		RemotePlayerQueue = RemoteInput;	//Remote player inputs
 	}
 	
 	/**
@@ -58,7 +63,11 @@ public class GameWorld implements Runnable{
 		//NextMove for shells
 		for(CannonShell shells:AliveShells) {
 			shells.NextMove(this);
-		}		
+		}
+		//NextMove for explosions
+		for(Explosion boom:ActiveExplosions) {
+			boom.NextMove();
+		}
 		//Clear dead objects
 		DestroyDeadThings();
 		//Game over conditions
@@ -72,7 +81,7 @@ public class GameWorld implements Runnable{
 	private void CreateNewTank(int Type) {
 		if(Type == 1) {
 			int[] pos = GameLogicUtility.RandomPositionGen(MapGridArray);
-			AlivePlayerTanks.add(new PlayerTank(pos[0], pos[1], false));
+			AlivePlayerTanks.add(new PlayerTank(pos[0], pos[1], true));
 		}
 	}
 		
@@ -80,16 +89,32 @@ public class GameWorld implements Runnable{
 	 * Removes dead objects from active objcts list
 	 */
 	private void DestroyDeadThings() {
+		int i = 0;
 		//AI tanks
 		//Shells
-		//Explosions
+		i = AliveShells.size();
+		while(i != 0) {
+			if(AliveShells.get(i-1).IsAlive == false) {
+				AliveShells.remove(i-1);
+			}
+			i--;
+		}
+		//Explosions		
+		i = ActiveExplosions.size();
+		while(i != 0) {
+			if(ActiveExplosions.get(i-1).IsAlive == false) {
+				ActiveExplosions.remove(i-1);
+			}
+			i--;
+		}
 		//Player tanks
 	}
 	
 	//Game logic control
 	public void StartGame() {
 		//Do some shit, initialize game
-		CreateNewTank(1);
+		CreateNewTank(1);	//Create player
+
 		//Start thread
 		if(GameLogicThread == null) {
 			System.out.println("Starting thread");
@@ -114,7 +139,7 @@ public class GameWorld implements Runnable{
 	public void run() {
 		//Game logic be here
 		try {
-			//Run main routine
+			//Run main routine TODO: fix this up
 			while(true) {
 			UpdateFrame();
 			callFrameUpdate();

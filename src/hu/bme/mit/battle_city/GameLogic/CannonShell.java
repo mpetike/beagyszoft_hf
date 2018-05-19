@@ -5,6 +5,7 @@ public class CannonShell extends MovingObject{
 	public CannonShell(int x,int y,int head) {
 		IsAlive = true;
 		CoolDown = 0;
+		Speed = 15;	//Gotta go fast
 		Heading = head;
 		GridLocX = x;
 		GridLocY = y;
@@ -12,7 +13,7 @@ public class CannonShell extends MovingObject{
 	
 	private void Explode(GameWorld gameworld) {
 		IsAlive = false;
-		gameworld.ActiveExplosions.add(new Explosion(GridLocX, GridLocX));
+		gameworld.ActiveExplosions.add(new Explosion(GridLocX, GridLocY));
 	}
 	
 	/**
@@ -52,14 +53,11 @@ public class CannonShell extends MovingObject{
 	
 	public void NextMove(GameWorld gameworld) {
 		if(IsAlive == false)return;
+		//Cooldown dec
+		if(CoolDown > 0)
+			CoolDown = CoolDown - Speed;
 		//Move forward (if we can)
-		if(CoolDown > 0) {
-			CoolDown--;
-		}
-		else {
-			CoolDown = 10;
-			MoveForward();
-		}
+		MoveForward();
 		//Check if hitting a wall
 		CheckOnWorldCollision(gameworld);
 		CheckOnTankCollision(gameworld);

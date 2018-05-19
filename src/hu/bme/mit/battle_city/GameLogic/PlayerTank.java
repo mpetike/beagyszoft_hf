@@ -1,5 +1,8 @@
 package hu.bme.mit.battle_city.GameLogic;
 
+import java.util.Queue;
+
+import com.sun.corba.se.spi.orbutil.fsm.Input;
 
 public class PlayerTank extends BaseTank{
 	public boolean LocalOrRemote;
@@ -8,14 +11,14 @@ public class PlayerTank extends BaseTank{
 	 * 
 	 * @param x - GridLocX starting position
 	 * @param y - GridLocY starting position
-	 * @param LocRemote false - local player 
+	 * @param LocRemote true - local player 
 	 */
 	public PlayerTank(int x,int y,boolean LocRemote) {
 		LocalOrRemote = LocRemote;
 		GridLocX = x;
 		GridLocY = y;
 		Health = 3;
-		Speed = 2;
+		Speed = 3;	//1/3 sec for movement
 		Heading = 0; //TODO: random heading???
 		IsAlive = true;
 		CoolDown = 0;
@@ -23,10 +26,26 @@ public class PlayerTank extends BaseTank{
 	
 	
 	public void NextMove(GameWorld gameworld) {
-		int input = EvaulateInputs();
-		
-		if(CheckForwardCollision(gameworld) == true)	//TODO
-			MoveForward();		
+		int input_move;
+		//Movement cooldown
+		if(CoolDown > 0)
+			CoolDown = CoolDown - Speed;	
+		//Get inputs for proper player
+		if(LocalOrRemote)
+			input_move = EvaulateInputs(gameworld.LocalPlayerQueue);
+		else
+			input_move = EvaulateInputs(gameworld.RemotePlayerQueue);
+		//Movements
+		switch(input_move){
+			case 0 : break;
+			case 3 : {
+				if(CheckForwardCollision(gameworld))
+					MoveForward();
+				} break;
+			case 1 : Rotate(2);break;
+			case 2 : Rotate(1);break;
+			case 5 : FireShell(gameworld); break;
+		}
 		return;
 	}
 	
@@ -34,8 +53,13 @@ public class PlayerTank extends BaseTank{
 	 * 
 	 * @return 0-nothing 1-moveforward 2-shoot 3-rot clockwise 4-rot c clockwise
 	 */
-	private int EvaulateInputs() {
-		return 0;
+	private int EvaulateInputs(Queue<Integer> input) {
+		if(input.isEmpty()) return 0;
+		int inpt_key = 0;
+		while(!input.isEmpty()) {
+			inpt_key = input.poll();
+		}
+		return inpt_key + 1;
 	}
 	
 }

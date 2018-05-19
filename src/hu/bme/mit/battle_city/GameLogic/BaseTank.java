@@ -37,8 +37,12 @@ public class BaseTank extends MovingObject{
 	 * Creates a new shell in the gameworld
 	 * @param gameworld Gameworld object
 	 */
-	private void FireShell(GameWorld gameworld) {
-		gameworld.AliveShells.add(new CannonShell(GridLocX, GridLocX, Heading));
+	protected void FireShell(GameWorld gameworld) {
+		if(CoolDown > 0) {
+			return;
+		}
+		CoolDown = 30;
+		gameworld.AliveShells.add(new CannonShell(GridLocX, GridLocY, Heading));		
 	}
 	
 	public void GetDamaged() {
@@ -50,7 +54,7 @@ public class BaseTank extends MovingObject{
 	 * Changes tank heading
 	 * @param LeftRight 1-left 2-right
 	 */
-	protected void rotate(int LeftRight) {
+	protected void Rotate(int LeftRight) {
 		int newheading = Heading;
 		if(LeftRight == 2) {
 			newheading = (newheading + 1) % 4;

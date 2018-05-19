@@ -126,7 +126,7 @@ public class GameField extends MenuPanel implements KeyListener {
     	{
     		
             BufferedImage cannonImg = objIm.getImg(2,cannon.Heading);
-            g.drawImage(cannonImg, cannon.GridLocX*40, cannon.GridLocY*40, this); 
+            g.drawImage(cannonImg, cannon.GridLocX*40 + 18, cannon.GridLocY*40 + 18, this); 
             
     	}
     	
