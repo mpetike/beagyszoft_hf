@@ -9,6 +9,7 @@ public class MovingObject {
 	public boolean IsAlive;
 	
 	protected void MoveForward() {
+		//Move object
 		if(Heading == 0)
 			GridLocY--;
 		else if(Heading == 1)

@@ -23,6 +23,10 @@ public class PlayerTank extends BaseTank{
 	
 	
 	public void NextMove(GameWorld gameworld) {
+		int input = EvaulateInputs();
+		
+		if(CheckForwardCollision(gameworld) == true)	//TODO
+			MoveForward();		
 		return;
 	}
 	
