@@ -3,6 +3,10 @@ package hu.bme.mit.battle_city.GameLogic;
 import java.util.ArrayList;
 import java.util.Queue;
 
+import javax.swing.SwingUtilities;
+
+import hu.bme.mit.battle_city.gui.GameField;
+
 public class GameWorld implements Runnable{
 	public boolean[][] MapGridArray;
 	public boolean SingleOrMulti;
@@ -10,14 +14,16 @@ public class GameWorld implements Runnable{
 	private int Difficulty;
 	
 	//Game objects
-	ArrayList<PlayerTank> AlivePlayerTanks;
-	ArrayList<AiTank> AliveAiTanks;
-	ArrayList<CannonShell> AliveShells;
-	ArrayList<Explosion> ActiveExplosions;
+	public ArrayList<PlayerTank> AlivePlayerTanks;
+	public ArrayList<AiTank> AliveAiTanks;
+	public ArrayList<CannonShell> AliveShells;
+	public ArrayList<Explosion> ActiveExplosions;
 	//Frame timing
-	public int FrameTime = 33;
+	public int FrameTime = 300;
 	//Thread variables
 	private Thread GameLogicThread;
+	
+	public GameField gamfield;
 	
 	/**
 	 * 
@@ -36,6 +42,7 @@ public class GameWorld implements Runnable{
 		AliveAiTanks = new ArrayList<AiTank>();
 		AliveShells = new ArrayList<CannonShell>();
 		ActiveExplosions = new ArrayList<Explosion>();
+		gamfield = gameFieldObj;
 	}
 	
 	/**
@@ -93,21 +100,27 @@ public class GameWorld implements Runnable{
 		
 	}
 	
+	private void callFrameUpdate() {
+		SwingUtilities.invokeLater(new Runnable() 
+	    {
+	      public void run()
+	      {
+	    	  gamfield.updateFrame();
+	      }		
+	    });
+	}
+	
 	//Run game logic
 	public void run() {
 		//Game logic be here
 		try {
 			//Run main routine
+			while(true) {
 			UpdateFrame();
-			UpdateFrame();
-			UpdateFrame();
-			UpdateFrame();
-			UpdateFrame();
-			UpdateFrame();
-			UpdateFrame();
-			UpdateFrame();
+			callFrameUpdate();
 			//Wait
 			Thread.sleep(FrameTime);
+			}
 			
 		} catch (InterruptedException e) {
 			// TODO: handle exception

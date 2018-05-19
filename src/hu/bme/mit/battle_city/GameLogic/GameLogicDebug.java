@@ -6,10 +6,10 @@ public class GameLogicDebug {
 		
 		System.out.println("Ayy lmao Debugclass");
 		
-		GameWorld gameworld = new GameWorld("mapfiles/map_default.txt",true,0,false,false);
+		//GameWorld gameworld = new GameWorld("mapfiles/map_default.txt",true,0,false,false);
 		
 		//Run thread
-		gameworld.StartGame();
+		//gameworld.StartGame();
 		
 		
 		//Sleep
