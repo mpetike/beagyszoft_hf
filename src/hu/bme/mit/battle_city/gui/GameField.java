@@ -3,13 +3,16 @@ package hu.bme.mit.battle_city.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import javax.swing.SwingUtilities;
-
+import hu.bme.mit.battle_city.GameLogic.AiTank;
+import hu.bme.mit.battle_city.GameLogic.CannonShell;
+import hu.bme.mit.battle_city.GameLogic.Explosion;
 import hu.bme.mit.battle_city.GameLogic.GameLogicUtility;
 import hu.bme.mit.battle_city.GameLogic.GameWorld;
+import hu.bme.mit.battle_city.GameLogic.PlayerTank;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -19,9 +22,7 @@ import java.awt.event.KeyListener;
  */
 public class GameField extends MenuPanel implements KeyListener {
 
-    int tankx=0;
-    int tanky=0;
-    int tankori=0;
+
     Menu mWindow;
     ObjectImages objIm;
     boolean[][] currentLevel;
@@ -30,9 +31,6 @@ public class GameField extends MenuPanel implements KeyListener {
     GameWorld gameEngine;
 	private static final long serialVersionUID = 6958968330216408636L;
 
-	//private GameState currentState; 
-	//majd a gamestatebol egy üres példány amibe rak az aktuális állás frissítések között , kliensnél párhuzamosít gamestate és az küld ide majd
-
 
 	public GameField(Menu menuWindow) {
 		super(menuWindow);
@@ -40,7 +38,6 @@ public class GameField extends MenuPanel implements KeyListener {
 		mWindow = menuWindow;
 	    addKeyListener(this);
 
-		// TODO konstruktor: gamelogic létrehozása, inicializálása
 	}
 
 	
@@ -61,27 +58,14 @@ public class GameField extends MenuPanel implements KeyListener {
 	    	
 	    	
     	}
-    	/*
-    	 * 
-    	 * if server akkor queukliensinput obj oda van neki adva és a gameworldnek is, egyik tölti másik olvassa 
-    	 * 
-    	 * ha kliens akkor tcp kliensnek megy  a queue aki küldi egyesével servernek
-    	 * 
-    	 * 
-    	 * 
-    	 */
+
         setFocusable(true);
         setBackground(Color.BLACK);
     }
 	
     
-    public void updateFrame()//gameState)
+    public void updateFrame()
 		{
-         //ezt hívja gamelogic ha van új state
-    	 //currentGameState=gameState;
-    	
-    	//teszt tank mozgatás gamelogic által közvetetten:
-    	 tankx=tankx+100;
     	 repaint();
 		}
     
@@ -106,11 +90,9 @@ public class GameField extends MenuPanel implements KeyListener {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		// TODO falak, tankok, lövedékek, robbanások kirajzolása
-		//a paint()-et a repaintel lehet meghívni, csak a gamlogic hívja majd a repaintet	
-	    //draw bricks
-	    int objType=0;  // 0-My tank, 1-Enemy tank, 2-Rocket,3-Explosion
-	    
+		//falak, tankok, lövedékek, robbanások kirajzolása
+
+	    //draw map
 		if (currentLevel==null)
 			{
 				currentLevel = GameLogicUtility.LoadMapFromFile(mWindow.MapFolder+mWindow.currentMap);
@@ -125,13 +107,50 @@ public class GameField extends MenuPanel implements KeyListener {
             }
             } 
 		
+	    //objType: 0-Player tank, 1-Enemy tank, 2-CannonShell,3-Explosion
+    	//draw AlivePlayerTanks
+    	ArrayList<PlayerTank> PlayerTank = gameEngine.AlivePlayerTanks;
+    	for(PlayerTank playerTank:PlayerTank)
+    	{
+    		
+            BufferedImage playerTankImg = objIm.getImg(0,playerTank.Heading);
+            g.drawImage(playerTankImg, playerTank.GridLocX, playerTank.GridLocY, this); 
+            
+    	}
+    	
+    	//draw AliveAiTanks
+    	ArrayList<AiTank> AliveAiTanks = gameEngine.AliveAiTanks;
+    	for(AiTank tank:AliveAiTanks)
+    	{
+    		
+            BufferedImage tankImg = objIm.getImg(1,tank.Heading);
+            g.drawImage(tankImg, tank.GridLocX, tank.GridLocY, this); 
+            
+    	}    	
+    	
 		
-        //read gamestate and draw objects
-                
-        BufferedImage myTank = objIm.getImg(objType,tankori);
-
-		// gamestatebol ki iterál minden object és kirajzol
-        g.drawImage(myTank, tankx, tanky, this);      
+    	//draw CannonShell
+    	ArrayList<CannonShell> CannonShell = gameEngine.AliveShells;
+    	for(CannonShell cannon:CannonShell)
+    	{
+    		
+            BufferedImage cannonImg = objIm.getImg(2,cannon.Heading);
+            g.drawImage(cannonImg, cannon.GridLocX, cannon.GridLocY, this); 
+            
+    	}
+    	
+    	//draw Explosions
+    	ArrayList<Explosion> Explosions = gameEngine.ActiveExplosions;
+    	for(Explosion explosion:Explosions)
+    	{
+    		
+            BufferedImage explosionImg = objIm.getImg(3,explosion.Heading);
+            g.drawImage(explosionImg, explosion.GridLocX, explosion.GridLocY, this); 
+            
+    	}    	
+    	
+    	
+    	
         // ide valami mozgás smoothener kéne: két koordináta között a 15x15 csatatéren, pl leoszt a gamestate change ami x ms onként jön, valamivel és a pici idoközönként léptet itt amíg nem jön új 
 
 	
@@ -143,6 +162,7 @@ public class GameField extends MenuPanel implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             userInput.add(0);
+            //send to TCP client
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             userInput.add(1);
