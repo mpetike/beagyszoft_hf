@@ -6,7 +6,11 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javax.swing.SwingUtilities;
+
 import hu.bme.mit.battle_city.GameLogic.GameLogicUtility;
+import hu.bme.mit.battle_city.GameLogic.GameWorld;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -18,12 +22,12 @@ public class GameField extends MenuPanel implements KeyListener {
     int tankx=0;
     int tanky=0;
     int tankori=0;
-    int objType=0;  // 0-My tank, 1-Enemy tank, 2-Rocket,3-Explosion
     Menu mWindow;
     ObjectImages objIm;
     boolean[][] currentLevel;
-    Queue<String> userInput; 
-    // GameWorld gameEngine
+    Queue<Integer> userInput; 
+    Queue<Integer> clientInput;     
+    GameWorld gameEngine;
 	private static final long serialVersionUID = 6958968330216408636L;
 
 	//private GameState currentState; 
@@ -34,27 +38,36 @@ public class GameField extends MenuPanel implements KeyListener {
 		super(menuWindow);
 		objIm = new ObjectImages();
 		mWindow = menuWindow;
-		startGame();
 	    addKeyListener(this);
 
 		// TODO konstruktor: gamelogic létrehozása, inicializálása
 	}
 
 	
-    private void startGame() {
+	public void startGame() {
 
 
         // init gamelogic stb. start new thread
-    	userInput = new LinkedList<String>();
-    	// gameEngine = new GameWorld( this,gamemode,myQ,etc args);
-    	// gameEngine.start();
+    	userInput = new LinkedList<Integer>();
+    	if  (!mWindow.clientMode)
+    	{
+    		if(mWindow.gameMode)
+    		{
+		    	clientInput = new LinkedList<Integer>();
+    		}
+    		
+	    	gameEngine = new GameWorld(mWindow.MapFolder + mWindow.currentMap, mWindow.gameMode, mWindow.difficulty,userInput,clientInput,this );
+	    	gameEngine.StartGame();
+	    	
+	    	
+    	}
     	/*
     	 * 
     	 * if server akkor queukliensinput obj oda van neki adva és a gameworldnek is, egyik tölti másik olvassa 
     	 * 
     	 * ha kliens akkor tcp kliensnek megy  a queue aki küldi egyesével servernek
     	 * 
-    	 * éehet egyszerre írni és olvasni queue-t?
+    	 * 
     	 * 
     	 */
         setFocusable(true);
@@ -62,12 +75,42 @@ public class GameField extends MenuPanel implements KeyListener {
     }
 	
     
+    public void updateFrame()//gameState)
+		{
+         //ezt hívja gamelogic ha van új state
+    	 //currentGameState=gameState;
+    	
+    	//teszt tank mozgatás gamelogic által közvetetten:
+    	 tankx=tankx+100;
+    	 repaint();
+		}
+    
+   /* Gameworldbe hogy menjen:
+    * 
+    * private GameField gameField;
+    * 
+    * GameWorld(String map_path, boolean sp_mode, int difficulty,Queue<Integer> InputQueue,Queue<Integer> RemoteInput, GameField gameFieldObj)
+    * 	gameField = gameFieldObj;
+    * 
+    * 
+    SwingUtilities.invokeLater(new Runnable() 
+    {
+      public void run()
+      {
+    	  gameFieldobj,updateFrame();
+      }		
+    });
+    
+    */
+    
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		// TODO falak, tankok, lövedékek, robbanások kirajzolása
 		//a paint()-et a repaintel lehet meghívni, csak a gamlogic hívja majd a repaintet	
 	    //draw bricks
+	    int objType=0;  // 0-My tank, 1-Enemy tank, 2-Rocket,3-Explosion
+	    
 		if (currentLevel==null)
 			{
 				currentLevel = GameLogicUtility.LoadMapFromFile(mWindow.MapFolder+mWindow.currentMap);
@@ -99,81 +142,22 @@ public class GameField extends MenuPanel implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            System.out.println("Right key pressed");
-            userInput.add("r");
-	            if(tankori!=1)
-	            {
-	            tankori=1;
-	            }
-	            else
-	            {
-	                if (tankx<560)
-	                {
-		            tankx = tankx+5;
-	                }
-	            }
-	            repaint();
-            }
-         
-        
+            userInput.add(0);
+        }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            System.out.println("Left key pressed");
-            userInput.add("l");
-            	if(tankori!=3)
-            	{
-		            tankori=3;
-	            }
-            	else
-            	{
-                    if (tankx>0)
-                    {
-	    	          tankx = tankx-5;
-                    }
-            	}
-                repaint();
-            	}
-        
+            userInput.add(1);
+        }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            System.out.println("UP key pressed");
-            userInput.add("u");
-            if (tankori!=2)
-	            {
-	            tankori=2;
-	            }
-            else
-	            {
-	             if (tanky>0)
-	             {
-	             tanky = tanky - 5;          	
-	             }
-	            }
-            repaint();      
+            userInput.add(2);   
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            System.out.println("Down key pressed");
-            userInput.add("d");
-            if (tankori!=0)
-	            {
-	            tankori=0;
-	            }
-            else
-	            {
-	             if (tanky<560)
-	             {
-	             tanky = tanky + 5;          	
-	             }
-	            }
-            repaint();
+            userInput.add(3);
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            //userInput.add("s");
-            String first=userInput.poll();
-            System.out.println(first);
-            repaint();
+            userInput.add(4);
+
         }       
     }
-
-
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub

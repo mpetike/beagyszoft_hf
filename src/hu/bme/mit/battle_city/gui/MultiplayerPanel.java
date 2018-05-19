@@ -26,7 +26,7 @@ public class MultiplayerPanel extends MenuPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				menuWindow.gameMode = 1;
+				menuWindow.clientMode = false;
 				mWindow.showPanel(PanelId.SERVER_PANEL);
 			}
 		});
@@ -36,7 +36,7 @@ public class MultiplayerPanel extends MenuPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				menuWindow.gameMode = 2;
+				menuWindow.clientMode = true;
 				mWindow.showPanel(PanelId.CLIENT_PANEL);
 			}
 		});

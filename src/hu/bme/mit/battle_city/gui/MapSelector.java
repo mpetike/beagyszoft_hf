@@ -19,6 +19,7 @@ import javax.swing.JScrollPane;
 public class MapSelector extends MenuPanel {
 	private static final long serialVersionUID = 8978172251199097146L;
 
+	GameField gameField;
 	JList<String> list;
 	DefaultListModel<String> model;
 
@@ -41,7 +42,10 @@ public class MapSelector extends MenuPanel {
 				if (i >= 0) {
 					menuWindow.currentMap = maps.get(i);
 					mWindow.showPanel(PanelId.GAME_FIELD);
-					System.out.println(menuWindow.currentMap);
+					//startGame
+					gameField=(GameField) menuWindow.mPanels.get(PanelId.GAME_FIELD);
+					gameField.startGame();
+					
 				}
 			}
 

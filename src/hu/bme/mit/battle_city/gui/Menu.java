@@ -14,14 +14,15 @@ public class Menu extends JFrame {
 	private static final long serialVersionUID = -6211743596073270671L;
 	public String MapFolder = "mapfiles/";
 	public String currentMap; 
-	public int difficulty;
-	public int gameMode; // 0-single, 1-MultiServer, 2-MultiClient
+	public int difficulty = 0;
+	public boolean gameMode = false; // 0-single, 1-Multi
+	public boolean clientMode = false; // 0-Server, 1-Client
 	public int serverPort = 5555;
 	
 	public enum PanelId {
 		GAME_MODE_SELECTOR,CHOOSE_DIFFICULTY, MAP_SELECTOR, MULTIPLAYER_PANEL, SERVER_PANEL, CLIENT_PANEL, GAME_FIELD, GET_NAME_PANEL, TOPLIST, ERROR_PANEL
 	}
-	private Map<PanelId, MenuPanel> mPanels = new HashMap<>();
+	public Map<PanelId, MenuPanel> mPanels = new HashMap<>();
 	private MenuPanel mCurrentPanel = null;
 	
 	public Menu() 

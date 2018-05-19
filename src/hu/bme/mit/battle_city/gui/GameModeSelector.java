@@ -26,7 +26,7 @@ public class GameModeSelector extends MenuPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				menuWindow.gameMode = 0;
+				menuWindow.gameMode = false;
 				menuWindow.showPanel(PanelId.CHOOSE_DIFFICULTY);
 			}
 		});
@@ -36,6 +36,7 @@ public class GameModeSelector extends MenuPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				menuWindow.showPanel(PanelId.MULTIPLAYER_PANEL);
+				menuWindow.gameMode = true;
 			}
 		});
 
