@@ -1,6 +1,7 @@
 package hu.bme.mit.battle_city.GameLogic;
 
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class GameWorld implements Runnable{
 	public boolean[][] MapGridArray;
@@ -26,7 +27,7 @@ public class GameWorld implements Runnable{
 	 * @param InputQueue - queue holding input keys
 	 * @param RemoteInput - Remote player input
 	 */
-	public GameWorld(String map_path, boolean sp_mode, int difficulty,boolean InputQueue,boolean RemoteInput) {
+	public GameWorld(String map_path, boolean sp_mode, int difficulty, Queue<Integer> InputQueue,Queue<Integer> RemoteInput, GameField gameFieldObj) {
 		SingleOrMulti = sp_mode;
 		MapGridArray = GameLogicUtility.LoadMapFromFile(map_path);
 		Difficulty = difficulty;
