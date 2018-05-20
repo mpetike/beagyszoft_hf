@@ -59,10 +59,15 @@ public class GameWorld implements Runnable{
 			player.NextMove(this);
 		}
 		//NextMove for Ai tanks
+		//Create new tank if all of them are dead
 		if(SingleOrMulti == false) {	//TODO fix bool
 			//If all tanks are destroyed
 			if(AliveAiTanks.isEmpty())
 				CreateNewTank(0);
+		}
+		//Nextmove
+		for(AiTank tank:AliveAiTanks) {
+			tank.NextMove(this);
 		}
 		//NextMove for shells
 		for(CannonShell shells:AliveShells) {
