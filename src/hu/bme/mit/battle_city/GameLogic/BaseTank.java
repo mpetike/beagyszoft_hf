@@ -4,7 +4,7 @@ public class BaseTank extends MovingObject{
 	protected int Health;
 	
 	private void Die() {
-		if(Heading == 0)
+		if(Health == 0)
 			IsAlive = false;
 	}
 	

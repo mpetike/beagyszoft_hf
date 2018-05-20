@@ -21,6 +21,7 @@ public class AiTank extends BaseTank{
 		Heading = 0;
 		Speed = 3;
 		CoolDown = 0;
-		Health = 1;
+		DifficultyModifier = difficulty;
+		Health = 1;	//TODO: health/difficulty
 	}
 }
