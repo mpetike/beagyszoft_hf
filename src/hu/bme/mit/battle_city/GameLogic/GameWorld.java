@@ -10,7 +10,7 @@ import hu.bme.mit.battle_city.gui.GameField;
 public class GameWorld implements Runnable{
 	public boolean[][] MapGridArray;
 	public boolean SingleOrMulti;
-	private int TimeElapsed;
+	private double TimeElapsed;
 	private int Difficulty;
 	
 	//Game objects
@@ -59,7 +59,11 @@ public class GameWorld implements Runnable{
 			player.NextMove(this);
 		}
 		//NextMove for Ai tanks
-		
+		if(SingleOrMulti == false) {	//TODO fix bool
+			//If all tanks are destroyed
+			if(AliveAiTanks.isEmpty())
+				CreateNewTank(0);
+		}
 		//NextMove for shells
 		for(CannonShell shells:AliveShells) {
 			shells.NextMove(this);
@@ -79,9 +83,12 @@ public class GameWorld implements Runnable{
 	 * @param Type 0-AiTank 1-Player 2-RemotePlayer
 	 */
 	private void CreateNewTank(int Type) {
-		if(Type == 1) {
-			int[] pos = GameLogicUtility.RandomPositionGen(MapGridArray);
+		int[] pos = GameLogicUtility.RandomPositionGen(MapGridArray);
+		if(Type == 1) {			
 			AlivePlayerTanks.add(new PlayerTank(pos[0], pos[1], true));
+		}
+		if(Type == 0) {
+			AliveAiTanks.add(new AiTank(pos[0], pos[1], Difficulty));
 		}
 	}
 		
@@ -91,6 +98,13 @@ public class GameWorld implements Runnable{
 	private void DestroyDeadThings() {
 		int i = 0;
 		//AI tanks
+		i = AliveAiTanks.size();
+		while(i != 0) {
+			if(AliveAiTanks.get(i-1).IsAlive == false) {
+				AliveAiTanks.remove(i-1);
+			}
+			i--;
+		}
 		//Shells
 		i = AliveShells.size();
 		while(i != 0) {
@@ -145,6 +159,7 @@ public class GameWorld implements Runnable{
 			callFrameUpdate();
 			//Wait
 			Thread.sleep(FrameTime);
+			TimeElapsed += 1 / (double)FrameTime;
 			}
 			
 		} catch (InterruptedException e) {

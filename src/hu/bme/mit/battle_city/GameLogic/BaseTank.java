@@ -26,9 +26,15 @@ public class BaseTank extends MovingObject{
 		if((y_next < 0) || (y_next > 14) || (x_next < 0) || (x_next > 14))return false;
 		//Check if collision with walls
 		if(gameworld.MapGridArray[y_next][x_next] == true)return false;
-		//Check for tanks TODO
+		//Check for tanks TODO(referencing descendants in class ???)
 		//AI tank
+		for(PlayerTank tank:gameworld.AlivePlayerTanks) {
+			if((tank.GridLocX == x_next) && (tank.GridLocY == y_next))return false;
+		}
 		//Player tanks
+		for(AiTank tank:gameworld.AliveAiTanks) {
+			if((tank.GridLocX == x_next) && (tank.GridLocY == y_next))return false;
+		}
 		
 		return true;
 	}
