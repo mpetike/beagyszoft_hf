@@ -31,11 +31,18 @@ public class AiTank extends BaseTank{
 				player_y = gameworld.AlivePlayerTanks.get(0).GridLocY;
 				//Print movement direction
 				int dir2go = PathFinder.PathFindToTarget(GridLocY, GridLocX, player_y, player_x, gameworld.MapGridArray);
-				if(dir2go == Heading)
-					MoveForward();
-				if(dir2go != 4)
+				if(dir2go == Heading) {
+					if(CheckForwardCollision(gameworld)) {
+						MoveForward();
+					}
+				}
+				else if(dir2go != 4) {
 					Rotate(1);
-			}	
+				}
+				else if(dir2go == 4)
+					GetDamaged();
+
+			}
 		}
 	}
 	

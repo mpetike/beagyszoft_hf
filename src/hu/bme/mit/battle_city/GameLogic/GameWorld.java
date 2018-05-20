@@ -58,6 +58,10 @@ public class GameWorld implements Runnable{
 		for(PlayerTank player:AlivePlayerTanks) {
 			player.NextMove(this);
 		}
+		//NextMove for shells
+		for(CannonShell shells:AliveShells) {
+			shells.NextMove(this);
+		}
 		//NextMove for Ai tanks
 		//Create new tank if all of them are dead
 		if(SingleOrMulti == false) {	//TODO fix bool
@@ -68,10 +72,6 @@ public class GameWorld implements Runnable{
 		//Nextmove
 		for(AiTank tank:AliveAiTanks) {
 			tank.NextMove(this);
-		}
-		//NextMove for shells
-		for(CannonShell shells:AliveShells) {
-			shells.NextMove(this);
 		}
 		//NextMove for explosions
 		for(Explosion boom:ActiveExplosions) {

@@ -32,7 +32,8 @@ public class PathFinder {
 		boolean path2target_found = false;
 		//Queue holding places to be visited
 		Queue<PathNode> node_queue = new LinkedList<>();
-		
+		//If already on top of target, return
+		if((selfpos_y == targetpos_y)&&(selfpos_x == targetpos_x))return 4;
 		//Place starting point in queue
 		node_queue.add(new PathNode(selfpos_y, selfpos_x, null));
 		//And mark it as invalid on searchmap		
