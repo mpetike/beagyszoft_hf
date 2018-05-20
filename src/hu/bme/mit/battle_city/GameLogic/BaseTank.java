@@ -47,7 +47,7 @@ public class BaseTank extends MovingObject{
 		if(CoolDown > 0) {
 			return;
 		}
-		CoolDown = 30;
+		CoolDown += 30;
 		gameworld.AliveShells.add(new CannonShell(GridLocX, GridLocY, Heading));		
 	}
 	

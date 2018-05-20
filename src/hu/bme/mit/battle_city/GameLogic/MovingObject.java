@@ -12,7 +12,7 @@ public class MovingObject {
 		if(CoolDown > 0) {			
 			return;
 		}		
-		CoolDown = 30;
+		CoolDown += 30;
 		//Move object
 		if(Heading == 0)
 			GridLocY--;

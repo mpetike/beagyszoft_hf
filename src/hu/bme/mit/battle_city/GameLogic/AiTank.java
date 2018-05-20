@@ -2,6 +2,8 @@ package hu.bme.mit.battle_city.GameLogic;
 
 public class AiTank extends BaseTank{
 	private int DifficultyModifier;
+	private int Hesitation;
+	private int HesitationReset;
 	
 	public void NextMove(GameWorld gameworld) {
 		if(IsAlive == false)return;
@@ -10,15 +12,50 @@ public class AiTank extends BaseTank{
 			CoolDown = CoolDown - Speed;
 		//Check line of sight, if clear view: fire
 		if(CheckLineOfSight(gameworld)) {
-			FireShell(gameworld);
+			if(Hesitation > 0) {
+				Hesitation -= Speed;
+			}
+			else {
+				FireShell(gameworld);
+				Hesitation = HesitationReset;
+			}
 		}
-		else
+		else {
 			PathFindToTarget(gameworld);
+			Hesitation = HesitationReset;
+		}
 	}
 	
 	private boolean CheckLineOfSight(GameWorld gameworld) {
-		//Return line of sight		
-		
+		if(!gameworld.AlivePlayerTanks.isEmpty()) {
+			int player_x = gameworld.AlivePlayerTanks.get(0).GridLocX;
+			int player_y = gameworld.AlivePlayerTanks.get(0).GridLocY;
+			int i;
+			if(Heading == 0) {
+				for(i=0;gameworld.MapGridArray[GridLocY - i][GridLocX] == false;i++) {
+					if(((GridLocY - i) == player_y) && ((GridLocX) == player_x))
+						return true;
+				}
+			}
+			else if(Heading == 1) {
+				for(i=0;gameworld.MapGridArray[GridLocY][GridLocX + i] == false;i++) {
+					if(((GridLocY) == player_y) && ((GridLocX + i) == player_x))
+						return true;
+				}				
+			}
+			else if(Heading == 2) {
+				for(i=0;gameworld.MapGridArray[GridLocY + i][GridLocX] == false;i++) {
+					if(((GridLocY + i) == player_y) && ((GridLocX) == player_x))
+						return true;
+				}	
+			}
+			else if(Heading == 3) {
+				for(i=0;gameworld.MapGridArray[GridLocY][GridLocX - i] == false;i++) {
+					if(((GridLocY) == player_y) && ((GridLocX - i) == player_x))
+						return true;
+				}				
+			}
+		}
 		return false;
 	}
 	
@@ -55,5 +92,7 @@ public class AiTank extends BaseTank{
 		CoolDown = 0;
 		DifficultyModifier = difficulty;
 		Health = 1;	//TODO: health/difficulty
+		HesitationReset = 50; //TODO difficulty
+		Hesitation = 0; 
 	}
 }
