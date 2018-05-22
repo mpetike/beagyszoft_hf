@@ -33,6 +33,9 @@ public class CannonShell extends MovingObject{
 	private void CheckOnWorldCollision(GameWorld gameworld) {
 		if(gameworld.MapGridArray[GridLocY][GridLocX] == true) {
 			Explode(gameworld);
+			//Experimental
+			if(((GridLocY != 0)&&(GridLocY != 14))&&((GridLocX != 0)&&(GridLocX != 14)))
+				gameworld.MapGridArray[GridLocY][GridLocX] = false;
 		}
 	}
 	

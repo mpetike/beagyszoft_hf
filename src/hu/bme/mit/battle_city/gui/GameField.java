@@ -84,10 +84,13 @@ public class GameField extends MenuPanel implements KeyListener {
 		//falak, tankok, lövedékek, robbanások kirajzolása
 
 	    //draw map
-		if (currentLevel==null)
+		if (gameEngine==null)
 			{
 				currentLevel = GameLogicUtility.LoadMapFromFile(mWindow.MapFolder+mWindow.currentMap);
 			}
+		else {
+			currentLevel = gameEngine.MapGridArray;
+		}
 		for (int y = 0; y < 15; y++) {
             for (int x = 0; x < 15; x++) 
             {
