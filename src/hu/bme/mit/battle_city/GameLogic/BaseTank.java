@@ -1,11 +1,18 @@
 package hu.bme.mit.battle_city.GameLogic;
 
+/**
+ * Base class for all tanks, implements firing, collision detection, etc.
+ * @author Peti
+ *
+ */
 public class BaseTank extends MovingObject{
 	protected int Health;
 	
+	/**
+	 * Kills tank, gameworld will automatically remove it from list
+	 */
 	private void Die() {
-		if(Health == 0)
-			IsAlive = false;
+		IsAlive = false;
 	}
 	
 	/**
@@ -51,9 +58,13 @@ public class BaseTank extends MovingObject{
 		gameworld.AliveShells.add(new CannonShell(GridLocX, GridLocY, Heading));		
 	}
 	
+	/**
+	 * Causes damage, kills tank if health is zero
+	 */
 	public void GetDamaged() {
 		Health = Health - 1;
-		Die();
+		if(Health == 0)
+			Die();
 	}
 	
 	/**

@@ -8,6 +8,11 @@ import java.util.Random;
 
 public class GameLogicUtility {	
 	
+	/**
+	 * Generates random location thats not occupied by a wall
+	 * @param map Gamemap
+	 * @return
+	 */
 	public static int[] RandomPositionGen(boolean[][] map) {
 		int[] random_pos = new int[2];
 		int y = 0,x = 0;
@@ -27,6 +32,11 @@ public class GameLogicUtility {
 		return random_pos;
 	}
 	
+	/**
+	 * Loads a map from a file, map file has to be made of 15x15 characters, where 1 is a wall 0 is an empty space
+	 * @param path Path to mapfile
+	 * @return 15x15 boolean array for gameworld
+	 */
 	public static boolean[][] LoadMapFromFile(String path) {
 		boolean[][] map_loaded = new boolean[15][15];
 		

@@ -1,10 +1,19 @@
 package hu.bme.mit.battle_city.GameLogic;
 
+/**
+ * Enemy non playable tanks, will pathfind to player and fire if it has a clear line of sight
+ * @author Peti
+ *
+ */
 public class AiTank extends BaseTank{
 	private int DifficultyModifier;
 	private int Hesitation;
 	private int HesitationReset;
 	
+	/**
+	 * AiTank nextmove, moves towards the player and fires shells if it has a clear line of sight
+	 * @param gameworld
+	 */
 	public void NextMove(GameWorld gameworld) {
 		if(IsAlive == false)return;
 		//Cooldown dec
@@ -26,6 +35,11 @@ public class AiTank extends BaseTank{
 		}
 	}
 	
+	/**
+	 * Checks if it has a clear line of sight to the player
+	 * @param gameworld
+	 * @return true - line of sight false - no line of sight
+	 */
 	private boolean CheckLineOfSight(GameWorld gameworld) {
 		if(!gameworld.AlivePlayerTanks.isEmpty()) {
 			int player_x = gameworld.AlivePlayerTanks.get(0).GridLocX;
@@ -59,6 +73,10 @@ public class AiTank extends BaseTank{
 		return false;
 	}
 	
+	/**
+	 * Moves tank towards the player, if there is no path, causes damage to itself
+	 * @param gameworld
+	 */
 	private void PathFindToTarget(GameWorld gameworld) {
 		//Only if there is a player on the field
 		if(!gameworld.AlivePlayerTanks.isEmpty()) {
@@ -74,7 +92,7 @@ public class AiTank extends BaseTank{
 					}
 				}
 				else if(dir2go != 4) {
-					Rotate(1);
+					Rotate(1);	//TODOFigure this shit out
 				}
 				else if(dir2go == 4)
 					GetDamaged();
@@ -88,11 +106,15 @@ public class AiTank extends BaseTank{
 		GridLocX = x;
 		GridLocY = y;
 		Heading = 0;
-		Speed = 3;
 		CoolDown = 0;
 		DifficultyModifier = difficulty;
-		Health = 1;	//TODO: health/difficulty
-		HesitationReset = 50; //TODO difficulty
+		Health = 1;
+		switch(DifficultyModifier) {
+			case 1: HesitationReset = 100; Speed = 2; break;
+			case 2: HesitationReset = 50;  Speed = 3; break;
+			case 3: HesitationReset = 25;  Speed = 4; break;
+			default : HesitationReset = 100; Speed = 3; break;
+		}
 		Hesitation = 0; 
 	}
 }

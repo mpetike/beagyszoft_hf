@@ -2,6 +2,11 @@ package hu.bme.mit.battle_city.GameLogic;
 
 import java.util.ArrayList;
 
+/**
+ * Node used by pathfinding algorithm 
+ * @author Peti
+ *
+ */
 public class PathNode {
 	public int x;
 	public int y;

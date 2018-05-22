@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Pathfinding utility used by AiTank
+ * @author Peti
+ *
+ */
 public class PathFinder {
 	
 	public PathFinder() {
@@ -12,6 +17,7 @@ public class PathFinder {
 	
 	/**
 	 * Pathfinds shortest route to target, returns direction in witch target should move
+	 * Uses Breadth-First-Search
 	 * @param self_pos	Self position [0]-y [1]-x
 	 * @param target_pos Targets position [0]-y [1]-x
 	 * @param map Map held in a boolean array - map[y][x]

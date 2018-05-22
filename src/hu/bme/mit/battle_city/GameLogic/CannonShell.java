@@ -1,5 +1,10 @@
 package hu.bme.mit.battle_city.GameLogic;
 
+/**
+ * Canonshell fired by tanks, causes damage to tanks hit, no friend or foe distinction
+ * @author Peti
+ *
+ */
 public class CannonShell extends MovingObject{
 	
 	public CannonShell(int x,int y,int head) {
@@ -11,13 +16,17 @@ public class CannonShell extends MovingObject{
 		GridLocY = y;
 	}
 	
+	/**
+	 * Creates explosion and dies
+	 * @param gameworld
+	 */
 	private void Explode(GameWorld gameworld) {
 		IsAlive = false;
 		gameworld.ActiveExplosions.add(new Explosion(GridLocX, GridLocY));
 	}
 	
 	/**
-	 * 
+	 * Checks collision with gameworld
 	 * @param gameworld Gameworld object
 	 * @return true - colliding world false - no collision
 	 */
@@ -51,6 +60,10 @@ public class CannonShell extends MovingObject{
 		}
 	}
 	
+	/**
+	 * Canonshell nextmove, moves in straight line until it hits something
+	 * @param gameworld
+	 */
 	public void NextMove(GameWorld gameworld) {
 		if(IsAlive == false)return;
 		//Cooldown dec

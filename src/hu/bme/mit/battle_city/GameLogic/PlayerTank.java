@@ -2,8 +2,11 @@ package hu.bme.mit.battle_city.GameLogic;
 
 import java.util.Queue;
 
-import com.sun.corba.se.spi.orbutil.fsm.Input;
-
+/**
+ * Tank controlled by a player, can be a local player or a remote one
+ * @author Peti
+ *
+ */
 public class PlayerTank extends BaseTank{
 	public boolean LocalOrRemote;
 	
@@ -19,12 +22,15 @@ public class PlayerTank extends BaseTank{
 		GridLocY = y;
 		Health = 3;
 		Speed = 3;	//1/3 sec for movement
-		Heading = 0; //TODO: random heading???
+		Heading = 0; 
 		IsAlive = true;
 		CoolDown = 0;
 	}
 	
-	
+	/**
+	 * NextMoce for player controlled tanks, evaluates inputs from set source and executes them
+	 * @param gameworld
+	 */
 	public void NextMove(GameWorld gameworld) {
 		int input_move;
 		//Movement cooldown
@@ -50,7 +56,7 @@ public class PlayerTank extends BaseTank{
 	}
 	
 	/**
-	 * 
+	 * Gets latest input command from an input queue
 	 * @return 0-nothing 1-moveforward 2-shoot 3-rot clockwise 4-rot c clockwise
 	 */
 	private int EvaulateInputs(Queue<Integer> input) {
