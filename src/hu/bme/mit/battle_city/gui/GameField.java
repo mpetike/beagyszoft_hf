@@ -86,9 +86,10 @@ public class GameField extends MenuPanel implements KeyListener {
 	    //draw map
 		if (gameEngine==null)
 			{
-				currentLevel = GameLogicUtility.LoadMapFromFile(mWindow.MapFolder+mWindow.currentMap);
+				currentLevel = new boolean[15][15];
 			}
-		else {
+		else 
+		{
 			currentLevel = gameEngine.MapGridArray;
 		}
 		for (int y = 0; y < 15; y++) {

@@ -58,7 +58,7 @@ public class GameWorld implements Runnable{
 		LocalPlayerQueue = InputQueue;	//Local player inputs
 		RemotePlayerQueue = RemoteInput;	//Remote player inputs
 		GameOver = false;
-		renderobj = new RenderObjects(this);
+		renderobj = new RenderObjects(this);	//Object used for rendering game elements
 	}
 	
 	/**
