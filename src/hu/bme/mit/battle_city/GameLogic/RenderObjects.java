@@ -23,6 +23,9 @@ public class RenderObjects implements Serializable{
 	public RenderObjects(GameWorld gameworld) {
 		MapGridArray = gameworld.MapGridArray;
 		AliveAiTanks = gameworld.AliveAiTanks;
+		AlivePlayerTanks = gameworld.AlivePlayerTanks;
+		AliveShells = gameworld.AliveShells;
+		ActiveExplosions = gameworld.ActiveExplosions;
 	}
 
 }

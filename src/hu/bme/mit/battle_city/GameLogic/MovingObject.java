@@ -1,11 +1,17 @@
 package hu.bme.mit.battle_city.GameLogic;
 
+import java.io.Serializable;
+
 /**
  * Base class for all dynamic elements on the playfield
  * @author Peti
  *
  */
-public class MovingObject{
+public class MovingObject implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public int GridLocX;
 	public int GridLocY;
 	public int Heading;

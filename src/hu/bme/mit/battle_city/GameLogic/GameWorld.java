@@ -34,6 +34,8 @@ public class GameWorld implements Runnable{
 	Queue<Integer> RemotePlayerQueue;
 	//Object holding renderer
 	public GameField gamfield;
+	//Object holding render elements
+	public RenderObjects renderobj;
 	
 	/**
 	 * 
@@ -56,6 +58,7 @@ public class GameWorld implements Runnable{
 		LocalPlayerQueue = InputQueue;	//Local player inputs
 		RemotePlayerQueue = RemoteInput;	//Remote player inputs
 		GameOver = false;
+		renderobj = new RenderObjects(this);
 	}
 	
 	/**
