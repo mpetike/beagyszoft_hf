@@ -5,27 +5,21 @@
 
 	Játékmenet :
 	- Egy (TBD) grid-en mozoghat a tank 4 irányba
-	- A map-on elpusztíthatatlan előre megrajzolt falak vannak    +fícsör?? (elpusztítható részek)
+	- A map-on kilőhetőek a falak
 	- Ki kell nyírni egymást
-	- Health bar -> x lövést bír ki
 	- easy, medium, hard (élet és ellenfél életét befolyásolja)
 	- Nyilakkal lehet mozogni, SPACE lövés, ESC kilépés főmenübe
-	- extra fícsör ?? hangeffektek, zene
 
 	Játékmódok :
     - Single player	
     	- Buta AI követés legrövidebb úton, lő ha lát
-		- Lelőtt tank pontot ér
-		- Scoreboard
 		- Folyamatosan új ellenfelek
-		- extra fícsör ?? : 10 lelőtt tank -> +élet
+		- 3 élet
 
 	- Multiplayer
 		- 1 v 1 LAN-on keresztül
 		- 3 élet / játékos
-		- Új játék opció, mindkét játékosnak confirm-ot kell nyomnia
 		- Egyik játékos szerver, másik kliens
-		- ?? timeout
 
 	Menürendszer :
 	- Single player
