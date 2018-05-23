@@ -1,12 +1,8 @@
 package hu.bme.mit.battle_city.Network;
 
 
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
-import java.util.ArrayList;
-
-import hu.bme.mit.battle_city.GameLogic.PlayerTank;
 import hu.bme.mit.battle_city.gui.GameField;
 import hu.bme.mit.battle_city.gui.Menu;
  
@@ -18,8 +14,8 @@ public class TCPServerSend implements Runnable {
    Socket client;
    ObjectOutputStream out;
    public Thread serverSendThread;
-   public TCPServerSend( Socket connection,GameField gameF) throws IOException {
-	   
+   public TCPServerSend( Socket connection,GameField gameF, Menu mWindow) throws IOException {
+	  menuWindow=mWindow;
 	  gameField=gameF;	  
       client = connection;
  	  out = new ObjectOutputStream(connection.getOutputStream());
@@ -27,7 +23,7 @@ public class TCPServerSend implements Runnable {
       // 
    }
    public void run() {
-      while(true) {
+      while(!client.isClosed() & menuWindow.gameOn) {
          try {
         	 synchronized (this) 
         	 { 
@@ -38,17 +34,14 @@ public class TCPServerSend implements Runnable {
             out.writeObject(gameField.gameState);
  
             
-         } catch (SocketTimeoutException s) {   // client closed exception ide
-            System.out.println("Socket timed out!");
-            // server.close();
-            break;
          } catch (IOException e) {
             e.printStackTrace();
-            break;
+            
          } catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+   
       }
    }
    

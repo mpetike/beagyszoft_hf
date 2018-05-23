@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import hu.bme.mit.battle_city.Network.TCPClient;
-import hu.bme.mit.battle_city.Network.TCPServer;
 import hu.bme.mit.battle_city.gui.Menu.PanelId;
 
 public class ClientPanel extends MenuPanel {
@@ -46,6 +45,7 @@ public class ClientPanel extends MenuPanel {
             
 			l1.setText("Connecting to server..."); 
 			try {
+				menuWindow.gameOn = true;
 				menuWindow.client = new TCPClient(menuWindow,hostIP);
 				menuWindow.client.start();
 			} catch (IOException e) {

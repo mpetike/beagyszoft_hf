@@ -45,7 +45,13 @@ public class MapSelector extends MenuPanel {
 					
 					if(menuWindow.gameMode)
 					{
+				        try{  
+				        	ServerPanel ServerPanel = (ServerPanel) menuWindow.mPanels.get(PanelId.SERVER_PANEL);
+				            String ip=java.net.InetAddress.getLocalHost().getHostAddress();  
+				            ServerPanel.l1.setText("Server IP is: "+ip);  
+				            }catch(Exception ex){System.out.println(ex);}  
 						mWindow.showPanel(PanelId.SERVER_PANEL);
+						
 					}
 					else {
 					mWindow.showPanel(PanelId.GAME_FIELD);

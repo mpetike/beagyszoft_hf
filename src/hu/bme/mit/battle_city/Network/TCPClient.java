@@ -9,7 +9,6 @@ import javax.swing.SwingUtilities;
 import hu.bme.mit.battle_city.gui.GameField;
 import hu.bme.mit.battle_city.gui.Menu;
 import hu.bme.mit.battle_city.gui.Menu.PanelId;
-import hu.bme.mit.battle_city.GameLogic.PlayerTank;
 import hu.bme.mit.battle_city.GameLogic.RenderObjects;
 
 //Server and blocking read
@@ -20,7 +19,6 @@ public class TCPClient implements Runnable {
    public TCPClientSend clientSend;
    public Thread clientThread;
    String host;
-
    public TCPClient(Menu mWindow, String hostIP) throws IOException {
 	  menuWindow = mWindow;
 	  host = hostIP;
@@ -30,21 +28,20 @@ public class TCPClient implements Runnable {
 
 
 public void run() {
-      while(true) {
+	
          try {
         	System.out.println("Waiting for server to accept ");
-            @SuppressWarnings("resource")
-			Socket client = new Socket(host,menuWindow.serverPort);
+            Socket client = new Socket(host,menuWindow.serverPort);
             ObjectInputStream in = new ObjectInputStream(client.getInputStream());
             
-            clientSend = new TCPClientSend(client, gameField);
+            clientSend = new TCPClientSend(client, gameField,menuWindow);
             clientSend.start();
             
             
             menuWindow.showPanel(PanelId.GAME_FIELD);
             gameField.startGame();
             
-            while (true) // while client is connected
+            while (!client.isClosed() & menuWindow.gameOn) 
             {
             gameField.gameState = (RenderObjects) in.readObject();
   
@@ -56,19 +53,27 @@ public void run() {
     	      }		
     	    });
             }
-            
-           // client.close();
-            
-
-         } catch (IOException e) {
+         
+            client.close();
+         }
+         catch (ConnectException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }   
+         catch (IOException e) {
             e.printStackTrace();
-            break;
+            
          } catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+         finally {
+	        menuWindow.showPanel(PanelId.GAME_MODE_SELECTOR); 
+	        menuWindow.gameOn = false;
+	        menuWindow.clientMode = false;
+         		}
       }
-   }
+   
 
    public void start () {
 	      if (clientThread == null) {

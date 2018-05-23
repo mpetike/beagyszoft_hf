@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import hu.bme.mit.battle_city.Network.TCPServer;
-import hu.bme.mit.battle_city.Network.TCPServerSend;
 import hu.bme.mit.battle_city.gui.Menu.PanelId;
 
 public class ServerPanel extends MenuPanel {
@@ -25,7 +24,7 @@ public class ServerPanel extends MenuPanel {
 	 */
 	private JButton mBtnStart;
 	private JButton mBtnBack;
-	private JLabel l1;  
+	JLabel l1;  
 
 	public ServerPanel(Menu menuWindow) {
 			super(menuWindow);
@@ -38,6 +37,7 @@ public class ServerPanel extends MenuPanel {
 				public void actionPerformed(ActionEvent event) {
 					l1.setText("Waiting for client..."); 
 					try {
+						menuWindow.gameOn = true;
 						menuWindow.server = new TCPServer(menuWindow);
 						menuWindow.server.start();
 					} catch (IOException e) {
@@ -47,12 +47,7 @@ public class ServerPanel extends MenuPanel {
 			});		
 			setLayout(null);
 		    l1=new JLabel("My IP");
-	        try{  
 
-	            String ip=java.net.InetAddress.getLocalHost().getHostAddress();  
-	            l1.setText("Server IP is: "+ip);  
-	            }catch(Exception ex){System.out.println(ex);}  
- 
 			mBtnBack = getBackButton(PanelId.MULTIPLAYER_PANEL);
 			
 		    l1.setBounds(170,150, 300,30); 

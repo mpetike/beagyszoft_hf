@@ -3,6 +3,7 @@ package hu.bme.mit.battle_city.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -34,7 +35,7 @@ public class GameField extends MenuPanel implements KeyListener, Serializable {
     boolean[][] currentLevel;
     public Queue<Integer> userInput; 
     public Queue<Integer> clientInput;     
-    GameWorld gameEngine;
+    public GameWorld gameEngine;
     public RenderObjects gameState;
     
     
@@ -92,8 +93,6 @@ public class GameField extends MenuPanel implements KeyListener, Serializable {
     	// remote send
 		if(mWindow.gameMode & !mWindow.clientMode )
 		{
-	
-
 	     	synchronized(mWindow.server.serverSend)
 			{
 			mWindow.server.serverSend.notify();
@@ -109,9 +108,6 @@ public class GameField extends MenuPanel implements KeyListener, Serializable {
 	public void paint(Graphics g) {
 		super.paint(g);
 		//falak, tankok, lövedékek, robbanások kirajzolása
-
-
-
 
 		if (gameState.MapGridArray!=null)
 		{
@@ -236,26 +232,27 @@ public class GameField extends MenuPanel implements KeyListener, Serializable {
         }
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
         	mWindow.showPanel(PanelId.GAME_MODE_SELECTOR);  
-        	if  (mWindow.gameMode)
-        	{
-        		if(mWindow.clientMode)
-        		{
-        			mWindow.client.clientThread.stop();
-        			mWindow.client.clientSend.clientSendThread.stop();
-        		}
-        		else 
-        		{
-        			gameEngine.GameLogicThread.stop();
-        			mWindow.server.serverThread.stop();
-        			mWindow.server.serverSend.serverSendThread.stop();
-        		}
-        	}
-        	else 
-        	{
-               	gameEngine.GameLogicThread.stop();
-        	}
+        	mWindow.gameOn = false;
+        	mWindow.clientMode = false;
+            if(!mWindow.clientMode)
+            {
+        	gameEngine.GameOver = true;
+            }
+            else {
+            	if(mWindow.gameMode)
+            	{
+            		try {
+						mWindow.server.serverSocket.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+            	}
+            	}
+            }
+            
         }
-        }       
+              
     
 	@Override
 	public void keyReleased(KeyEvent arg0) {

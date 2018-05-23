@@ -14,8 +14,8 @@ public class TCPClientSend implements Runnable {
    Socket client;
    DataOutputStream out;
    public Thread clientSendThread;
-   public TCPClientSend( Socket connection,GameField gameF) throws IOException {
-	   
+   public TCPClientSend( Socket connection,GameField gameF, Menu mWindow) throws IOException {
+	  menuWindow=mWindow;
 	  gameField=gameF;	  
       client = connection;
  	  out = new DataOutputStream(connection.getOutputStream());
@@ -23,7 +23,7 @@ public class TCPClientSend implements Runnable {
       // 
    }
    public void run() {
-      while(true) {
+      while(!client.isClosed() & menuWindow.gameOn) {
          try {
         	 synchronized (this) 
         	 { 
