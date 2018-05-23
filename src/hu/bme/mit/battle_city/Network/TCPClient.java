@@ -9,6 +9,7 @@ import javax.swing.SwingUtilities;
 import hu.bme.mit.battle_city.gui.GameField;
 import hu.bme.mit.battle_city.gui.Menu;
 import hu.bme.mit.battle_city.gui.Menu.PanelId;
+import hu.bme.mit.battle_city.GameLogic.PlayerTank;
 import hu.bme.mit.battle_city.GameLogic.RenderObjects;
 
 //Server and blocking read
@@ -16,6 +17,7 @@ public class TCPClient implements Runnable {
 	
    Menu menuWindow;
    GameField gameField;
+   public TCPClientSend clientSend;
    public Thread clientThread;
    String host;
 
@@ -35,14 +37,17 @@ public void run() {
 			Socket client = new Socket(host,menuWindow.serverPort);
             ObjectInputStream in = new ObjectInputStream(client.getInputStream());
             
+            clientSend = new TCPClientSend(client, gameField);
+            clientSend.start();
+            
+            
             menuWindow.showPanel(PanelId.GAME_FIELD);
             gameField.startGame();
             
             while (true) // while client is connected
             {
             gameField.gameState = (RenderObjects) in.readObject();
-            System.out.println("Gamestate came ");
-            
+  
     		SwingUtilities.invokeLater(new Runnable() 
     	    {
     	      public void run()
@@ -54,9 +59,7 @@ public void run() {
             
            // client.close();
             
-         } catch (SocketTimeoutException s) {   // server closed exception ide
-            System.out.println("Socket timed out!");
-            break;
+
          } catch (IOException e) {
             e.printStackTrace();
             break;

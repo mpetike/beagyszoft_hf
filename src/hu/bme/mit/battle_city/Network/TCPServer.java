@@ -30,7 +30,7 @@ public class TCPServer implements Runnable {
             System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
             Socket conn = serverSocket.accept();  // ez alatt wait for client vagy valami
             
-            TCPServerSend serverSend = new TCPServerSend(conn, gameField);
+            serverSend = new TCPServerSend(conn, gameField);
             serverSend.start();
 
             menuWindow.showPanel(PanelId.GAME_FIELD);

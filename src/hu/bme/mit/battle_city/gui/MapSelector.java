@@ -49,7 +49,6 @@ public class MapSelector extends MenuPanel {
 					}
 					else {
 					mWindow.showPanel(PanelId.GAME_FIELD);
-					//startGame
 					gameField=(GameField) menuWindow.mPanels.get(PanelId.GAME_FIELD);
 					gameField.startGame();
 					}

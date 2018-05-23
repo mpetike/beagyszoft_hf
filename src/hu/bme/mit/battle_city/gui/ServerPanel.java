@@ -36,8 +36,6 @@ public class ServerPanel extends MenuPanel {
 			mBtnStart.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent event) {
-					//start tcp server thread
-					//wait for client then switch to gamefield
 					l1.setText("Waiting for client..."); 
 					try {
 						menuWindow.server = new TCPServer(menuWindow);
@@ -45,14 +43,12 @@ public class ServerPanel extends MenuPanel {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-		
-					
 				}
 			});		
 			setLayout(null);
 		    l1=new JLabel("My IP");
 	        try{  
-	        	// átír hogy global ip-t kapjunk
+
 	            String ip=java.net.InetAddress.getLocalHost().getHostAddress();  
 	            l1.setText("Server IP is: "+ip);  
 	            }catch(Exception ex){System.out.println(ex);}  

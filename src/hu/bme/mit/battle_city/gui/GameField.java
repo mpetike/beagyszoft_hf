@@ -3,6 +3,7 @@ package hu.bme.mit.battle_city.gui;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -25,7 +26,7 @@ import java.awt.event.KeyListener;
 /**
  * A játék grafikus megjelenítését végzo osztály
  */
-public class GameField extends MenuPanel implements KeyListener {
+public class GameField extends MenuPanel implements KeyListener, Serializable {
 
 
     Menu mWindow;
@@ -40,7 +41,10 @@ public class GameField extends MenuPanel implements KeyListener {
     Timer timer; 
 	private static final long serialVersionUID = 6958968330216408636L;
 
-
+/**
+ * 
+ * @param menuWindow
+ */
 	public GameField(Menu menuWindow) {
 		super(menuWindow);
 		objIm = new ObjectImages();
@@ -88,8 +92,14 @@ public class GameField extends MenuPanel implements KeyListener {
     	// remote send
 		if(mWindow.gameMode & !mWindow.clientMode )
 		{
+	
+
+	     	synchronized(mWindow.server.serverSend)
+			{
 			mWindow.server.serverSend.notify();
+			}
 		}
+
     	repaint();
     	 
 		}
@@ -100,15 +110,16 @@ public class GameField extends MenuPanel implements KeyListener {
 		super.paint(g);
 		//falak, tankok, lövedékek, robbanások kirajzolása
 
-	    //draw map
-		if (gameEngine.GameOver)
+
+		/*if (gameEngine.GameOver)
 			{
 				g.drawImage(objIm.gameOver, 176, 200, this);
 				timer.setRepeats( false );
 				timer.start();
-				
 			}
 		else 
+		{*/
+		if (gameState.MapGridArray!=null)
 		{
 			currentLevel = gameState.MapGridArray;
 		
@@ -164,38 +175,86 @@ public class GameField extends MenuPanel implements KeyListener {
             
     	}    	
 		}
-    	
-    	
-        // ide valami mozgás smoothener kéne: két koordináta között a 15x15 csatatéren, pl leoszt a gamestate change ami x ms onként jön, valamivel és a pici idoközönként léptet itt amíg nem jön új 
-
-	
 	}
 
+	//}
+
 	
-// a gomblenyomások menjenek egy queuba a gamelogichoz vagy a tcp klienshez->server
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             userInput.add(0);
-            //send to TCP client
+            if(mWindow.clientMode)
+            {
+		     	synchronized(mWindow.client.clientSend)
+				{
+				mWindow.client.clientSend.notify();
+				}
+	     	}
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             userInput.add(1);
+            if(mWindow.clientMode)
+            {
+		     	synchronized(mWindow.client.clientSend)
+				{
+		     		mWindow.client.clientSend.notify();
+				}
+	     	}            
         }
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            userInput.add(2);   
+            userInput.add(2);  
+            if(mWindow.clientMode)
+            {
+		     	synchronized(mWindow.client.clientSend)
+				{
+		     		mWindow.client.clientSend.notify();
+				}
+	     	}            
         }
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             userInput.add(3);
+            if(mWindow.clientMode)
+            {
+		     	synchronized(mWindow.client.clientSend)
+				{
+		     		mWindow.client.clientSend.notify();
+				}
+	     	}            
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             userInput.add(4);
+            if(mWindow.clientMode)
+            {
+		     	synchronized(mWindow.client.clientSend)
+				{
+		     		mWindow.client.clientSend.notify();
+				}
+	     	}            
         }
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-        	mWindow.showPanel(PanelId.GAME_MODE_SELECTOR);            
-        	//ide gamengine megállítása
+        	mWindow.showPanel(PanelId.GAME_MODE_SELECTOR);  
+        	if  (mWindow.gameMode)
+        	{
+        		if(mWindow.clientMode)
+        		{
+        			mWindow.client.clientThread.stop();
+        			mWindow.client.clientSend.clientSendThread.stop();
+        		}
+        		else 
+        		{
+        			gameEngine.GameLogicThread.stop();
+        			mWindow.server.serverThread.stop();
+        			mWindow.server.serverSend.serverSendThread.stop();
+        		}
+        	}
+        	else 
+        	{
+               	gameEngine.GameLogicThread.stop();
+        	}
+        }
         }       
-    }
+    
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub

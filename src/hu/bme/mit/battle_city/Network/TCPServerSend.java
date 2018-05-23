@@ -1,8 +1,12 @@
 package hu.bme.mit.battle_city.Network;
 
 
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
+
+import hu.bme.mit.battle_city.GameLogic.PlayerTank;
 import hu.bme.mit.battle_city.gui.GameField;
 import hu.bme.mit.battle_city.gui.Menu;
  
@@ -25,8 +29,12 @@ public class TCPServerSend implements Runnable {
    public void run() {
       while(true) {
          try {
+        	 synchronized (this) 
+        	 { 
+        		 wait();
+        	 }
 
-            this.wait();
+         	out.reset();
             out.writeObject(gameField.gameState);
  
             

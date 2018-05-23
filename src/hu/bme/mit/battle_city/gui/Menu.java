@@ -37,7 +37,9 @@ public class Menu extends JFrame {
 			}
 	
 	
-
+/**
+ * 
+ */
 	private void initComponents() {
 		mPanels.put(PanelId.GAME_MODE_SELECTOR, new GameModeSelector(this));
 		mPanels.put(PanelId.CHOOSE_DIFFICULTY, new ChooseDifficulty(this));
