@@ -111,14 +111,8 @@ public class GameField extends MenuPanel implements KeyListener, Serializable {
 		//falak, tankok, lövedékek, robbanások kirajzolása
 
 
-		/*if (gameEngine.GameOver)
-			{
-				g.drawImage(objIm.gameOver, 176, 200, this);
-				timer.setRepeats( false );
-				timer.start();
-			}
-		else 
-		{*/
+
+
 		if (gameState.MapGridArray!=null)
 		{
 			currentLevel = gameState.MapGridArray;
@@ -175,6 +169,14 @@ public class GameField extends MenuPanel implements KeyListener, Serializable {
             
     	}    	
 		}
+		
+		if (gameState.GameOver == true)
+		{
+			g.drawImage(objIm.gameOver, 176, 200, this);
+			timer.setRepeats( false );
+			timer.start();
+		}
+		
 	}
 
 	//}

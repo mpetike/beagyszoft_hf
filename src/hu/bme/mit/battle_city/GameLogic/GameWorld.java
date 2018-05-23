@@ -69,20 +69,13 @@ public class GameWorld implements Runnable{
 		if(SingleOrMulti == false) {
 			if(AlivePlayerTanks.isEmpty())
 				GameOver = true;
-		}		
-		//if in multiplayer, recreate destroyed tanks
-		if(SingleOrMulti == true) {
-			boolean localdead = true,remotedead = true;
-			for(PlayerTank player:AlivePlayerTanks) {
-				if(player.LocalOrRemote == true)
-					localdead = false;
-				else 
-					remotedead = false;				
-			}
-			if(localdead)CreateNewTank(1);
-			if(remotedead)CreateNewTank(2);
-			
 		}
+		if(SingleOrMulti == true) {
+			if(AlivePlayerTanks.size() != 2) {
+				GameOver = true;
+			}
+		}
+		renderobj.GameOver = GameOver;
 		//NextMove for player tanks
 		for(PlayerTank player:AlivePlayerTanks) {
 			player.NextMove(this);
@@ -119,11 +112,11 @@ public class GameWorld implements Runnable{
 	private void CreateNewTank(int Type) {
 		if(Type == 1) {
 			int[] pos = GameLogicUtility.RandomPositionGen(MapGridArray);
-			AlivePlayerTanks.add(new PlayerTank(pos[0], pos[1], true));
+			AlivePlayerTanks.add(new PlayerTank(pos[0], pos[1], true, SingleOrMulti));
 		}
 		if(Type == 2) {
 			int[] pos = GameLogicUtility.RandomPositionGen(MapGridArray);
-			AlivePlayerTanks.add(new PlayerTank(pos[0], pos[1], false));
+			AlivePlayerTanks.add(new PlayerTank(pos[0], pos[1], false, SingleOrMulti));
 		}
 		if(Type == 0) {
 			if(!AlivePlayerTanks.isEmpty()) {
@@ -178,6 +171,9 @@ public class GameWorld implements Runnable{
 	public void StartGame() {
 		//Do some shit, initialize game
 		CreateNewTank(1);	//Create player
+		if(SingleOrMulti) {
+			CreateNewTank(2); //Create remote player
+		}
 		//Start thread
 		if(GameLogicThread == null) {
 			System.out.println("Starting game");

@@ -19,6 +19,7 @@ public class RenderObjects implements Serializable{
 	public ArrayList<AiTank> AliveAiTanks;
 	public ArrayList<CannonShell> AliveShells;
 	public ArrayList<Explosion> ActiveExplosions;
+	public boolean GameOver;
 	
 	/**
 	 * 
@@ -30,6 +31,7 @@ public class RenderObjects implements Serializable{
 		AlivePlayerTanks = gameworld.AlivePlayerTanks;
 		AliveShells = gameworld.AliveShells;
 		ActiveExplosions = gameworld.ActiveExplosions;
+		GameOver = gameworld.GameOver;
 	}
 
 }

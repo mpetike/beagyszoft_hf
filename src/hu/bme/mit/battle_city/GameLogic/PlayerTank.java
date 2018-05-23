@@ -16,11 +16,14 @@ public class PlayerTank extends BaseTank{
 	 * @param y - GridLocY starting position
 	 * @param LocRemote true - local player 
 	 */
-	public PlayerTank(int y,int x,boolean LocRemote) {
+	public PlayerTank(int y,int x,boolean LocRemote,boolean MultiOrSingle) {
 		LocalOrRemote = LocRemote;
 		GridLocX = x;
 		GridLocY = y;
-		Health = 3;
+		if(MultiOrSingle == true)
+			Health = 5;
+		else
+			Health = 3;
 		Speed = 3;	//1/3 sec for movement
 		Heading = 0; 
 		IsAlive = true;
