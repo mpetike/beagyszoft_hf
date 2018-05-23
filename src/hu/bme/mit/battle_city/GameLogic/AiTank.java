@@ -101,7 +101,7 @@ public class AiTank extends BaseTank{
 		}
 	}
 	
-	public AiTank(int x,int y,int difficulty) {
+	public AiTank(int y,int x,int difficulty) {
 		IsAlive = true;
 		GridLocX = x;
 		GridLocY = y;

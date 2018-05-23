@@ -10,7 +10,6 @@ import java.util.Queue;
 import hu.bme.mit.battle_city.GameLogic.AiTank;
 import hu.bme.mit.battle_city.GameLogic.CannonShell;
 import hu.bme.mit.battle_city.GameLogic.Explosion;
-import hu.bme.mit.battle_city.GameLogic.GameLogicUtility;
 import hu.bme.mit.battle_city.GameLogic.GameWorld;
 import hu.bme.mit.battle_city.GameLogic.PlayerTank;
 

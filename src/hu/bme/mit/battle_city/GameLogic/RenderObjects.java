@@ -20,6 +20,10 @@ public class RenderObjects implements Serializable{
 	public ArrayList<CannonShell> AliveShells;
 	public ArrayList<Explosion> ActiveExplosions;
 	
+	/**
+	 * 
+	 * @param gameworld
+	 */
 	public RenderObjects(GameWorld gameworld) {
 		MapGridArray = gameworld.MapGridArray;
 		AliveAiTanks = gameworld.AliveAiTanks;

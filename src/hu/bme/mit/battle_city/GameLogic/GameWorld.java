@@ -117,15 +117,19 @@ public class GameWorld implements Runnable{
 	 * @param Type 0-AiTank 1-Player 2-RemotePlayer
 	 */
 	private void CreateNewTank(int Type) {
-		int[] pos = GameLogicUtility.RandomPositionGen(MapGridArray);
-		if(Type == 1) {			
+		if(Type == 1) {
+			int[] pos = GameLogicUtility.RandomPositionGen(MapGridArray);
 			AlivePlayerTanks.add(new PlayerTank(pos[0], pos[1], true));
 		}
 		if(Type == 2) {
+			int[] pos = GameLogicUtility.RandomPositionGen(MapGridArray);
 			AlivePlayerTanks.add(new PlayerTank(pos[0], pos[1], false));
 		}
 		if(Type == 0) {
-			AliveAiTanks.add(new AiTank(pos[0], pos[1], Difficulty));
+			if(!AlivePlayerTanks.isEmpty()) {
+				int[] pos = GameLogicUtility.RandomPositionGenDistance(MapGridArray, AlivePlayerTanks.get(0).GridLocX, AlivePlayerTanks.get(0).GridLocY, 4);
+				AliveAiTanks.add(new AiTank(pos[0], pos[1], Difficulty));
+			}
 		}
 	}
 		

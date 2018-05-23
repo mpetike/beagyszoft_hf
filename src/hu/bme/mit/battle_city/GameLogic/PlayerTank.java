@@ -16,7 +16,7 @@ public class PlayerTank extends BaseTank{
 	 * @param y - GridLocY starting position
 	 * @param LocRemote true - local player 
 	 */
-	public PlayerTank(int x,int y,boolean LocRemote) {
+	public PlayerTank(int y,int x,boolean LocRemote) {
 		LocalOrRemote = LocRemote;
 		GridLocX = x;
 		GridLocY = y;

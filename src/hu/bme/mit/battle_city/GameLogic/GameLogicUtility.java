@@ -9,6 +9,38 @@ import java.util.Random;
 public class GameLogicUtility {	
 	
 	/**
+	 * Generates a random coordinate thats not on a wall, and and has a distance from the specified position more than the set value
+	 * @param map Gamemap
+	 * @param pos_x PositionX
+	 * @param pos_y PositionY
+	 * @param distance Distance
+	 * @return
+	 */
+	public static int[] RandomPositionGenDistance(boolean[][] map,int pos_x,int pos_y,int distance) {
+		int[] random_pos = new int[2];
+		int y = 0,x = 0;
+		
+		Random rand = new Random();
+		
+		boolean SpaceOccupied = true;
+		while(true) {
+			SpaceOccupied = true;
+			while(SpaceOccupied == true) {
+				y = rand.nextInt(15);
+				x = rand.nextInt(15);
+				if(map[y][x] == false)
+					SpaceOccupied = false;
+			}		
+			float distance_calc = (float) Math.sqrt(Math.pow((x - pos_x), 2) + Math.pow((y - pos_y), 2));
+			if(distance_calc >= distance)break;
+			
+		}
+		random_pos[0] = y;
+		random_pos[1] = x;
+		return random_pos;
+	}
+	
+	/**
 	 * Generates random location thats not occupied by a wall
 	 * @param map Gamemap
 	 * @return
