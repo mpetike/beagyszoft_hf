@@ -18,7 +18,7 @@ public class GameWorld implements Runnable{
 	@SuppressWarnings("unused")
 	private double TimeElapsed;
 	private int Difficulty;
-	private boolean GameOver;
+	public boolean GameOver;
 	
 	//Game objects
 	public ArrayList<PlayerTank> AlivePlayerTanks;

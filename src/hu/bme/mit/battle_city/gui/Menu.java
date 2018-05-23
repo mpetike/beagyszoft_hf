@@ -2,6 +2,8 @@ package hu.bme.mit.battle_city.gui;
 
 import javax.swing.JFrame;
 
+import hu.bme.mit.battle_city.Network.TCPClient;
+import hu.bme.mit.battle_city.Network.TCPServer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +20,8 @@ public class Menu extends JFrame {
 	public boolean gameMode = false; // 0-single, 1-Multi
 	public boolean clientMode = false; // 0-Server, 1-Client
 	public int serverPort = 5555;
+	public TCPServer server;
+	public TCPClient client;
 	
 	public enum PanelId {
 		GAME_MODE_SELECTOR,CHOOSE_DIFFICULTY, MAP_SELECTOR, MULTIPLAYER_PANEL, SERVER_PANEL, CLIENT_PANEL, GAME_FIELD, GET_NAME_PANEL, TOPLIST, ERROR_PANEL

@@ -7,13 +7,18 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javax.swing.Timer;
+
 import hu.bme.mit.battle_city.GameLogic.AiTank;
 import hu.bme.mit.battle_city.GameLogic.CannonShell;
 import hu.bme.mit.battle_city.GameLogic.Explosion;
-import hu.bme.mit.battle_city.GameLogic.GameLogicUtility;
 import hu.bme.mit.battle_city.GameLogic.GameWorld;
 import hu.bme.mit.battle_city.GameLogic.PlayerTank;
+import hu.bme.mit.battle_city.GameLogic.RenderObjects;
+import hu.bme.mit.battle_city.gui.Menu.PanelId;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -26,9 +31,13 @@ public class GameField extends MenuPanel implements KeyListener {
     Menu mWindow;
     ObjectImages objIm;
     boolean[][] currentLevel;
-    Queue<Integer> userInput; 
-    Queue<Integer> clientInput;     
+    public Queue<Integer> userInput; 
+    public Queue<Integer> clientInput;     
     GameWorld gameEngine;
+    public RenderObjects gameState;
+    
+    
+    Timer timer; 
 	private static final long serialVersionUID = 6958968330216408636L;
 
 
@@ -37,7 +46,16 @@ public class GameField extends MenuPanel implements KeyListener {
 		objIm = new ObjectImages();
 		mWindow = menuWindow;
 	    addKeyListener(this);
+	    
+	    // game over return to menu delay
+		int delay = 2000;
+		timer = new Timer(delay, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {                    
+            	mWindow.showPanel(PanelId.GAME_MODE_SELECTOR);
 
+            }
+        });
 	}
 
 	
@@ -55,7 +73,7 @@ public class GameField extends MenuPanel implements KeyListener {
     		
 	    	gameEngine = new GameWorld(mWindow.MapFolder + mWindow.currentMap, mWindow.gameMode, mWindow.difficulty,userInput,clientInput,this );
 	    	gameEngine.StartGame();
-	    	
+	    	gameState = gameEngine.renderobj;
 	    	
     	}
 
@@ -63,18 +81,17 @@ public class GameField extends MenuPanel implements KeyListener {
         setBackground(Color.BLACK);
     }
 	
-
-	
-	public void updateRemoteFrame() 
-	{
-		//deserialize gameworld from tcp client
-		
-	}
 	
     
     public void updateFrame()
 		{
-    	 repaint();
+    	// remote send
+		if(mWindow.gameMode & !mWindow.clientMode )
+		{
+			mWindow.server.serverSend.notify();
+		}
+    	repaint();
+    	 
 		}
     
     
@@ -84,14 +101,17 @@ public class GameField extends MenuPanel implements KeyListener {
 		//falak, tankok, lövedékek, robbanások kirajzolása
 
 	    //draw map
-		if (gameEngine==null)
+		if (gameEngine.GameOver)
 			{
-				currentLevel = new boolean[15][15];
+				g.drawImage(objIm.gameOver, 176, 200, this);
+				timer.setRepeats( false );
+				timer.start();
+				
 			}
 		else 
 		{
-			currentLevel = gameEngine.MapGridArray;
-		}
+			currentLevel = gameState.MapGridArray;
+		
 		for (int y = 0; y < 15; y++) {
             for (int x = 0; x < 15; x++) 
             {
@@ -104,7 +124,7 @@ public class GameField extends MenuPanel implements KeyListener {
 		
 	    //objType: 0-Player tank, 1-Enemy tank, 2-CannonShell,3-Explosion
     	//draw AlivePlayerTanks
-    	ArrayList<PlayerTank> PlayerTank = gameEngine.AlivePlayerTanks;
+    	ArrayList<PlayerTank> PlayerTank = gameState.AlivePlayerTanks;
     	for(PlayerTank playerTank:PlayerTank)
     	{
     		
@@ -114,7 +134,7 @@ public class GameField extends MenuPanel implements KeyListener {
     	}
     	
     	//draw AliveAiTanks
-    	ArrayList<AiTank> AliveAiTanks = gameEngine.AliveAiTanks;
+    	ArrayList<AiTank> AliveAiTanks = gameState.AliveAiTanks;
     	for(AiTank tank:AliveAiTanks)
     	{
     		
@@ -125,7 +145,7 @@ public class GameField extends MenuPanel implements KeyListener {
     	
 		
     	//draw CannonShell
-    	ArrayList<CannonShell> CannonShell = gameEngine.AliveShells;
+    	ArrayList<CannonShell> CannonShell = gameState.AliveShells;
     	for(CannonShell cannon:CannonShell)
     	{
     		
@@ -135,7 +155,7 @@ public class GameField extends MenuPanel implements KeyListener {
     	}
     	
     	//draw Explosions
-    	ArrayList<Explosion> Explosions = gameEngine.ActiveExplosions;
+    	ArrayList<Explosion> Explosions = gameState.ActiveExplosions;
     	for(Explosion explosion:Explosions)
     	{
     		
@@ -143,7 +163,7 @@ public class GameField extends MenuPanel implements KeyListener {
             g.drawImage(explosionImg, explosion.GridLocX*40, explosion.GridLocY*40, this); 
             
     	}    	
-    	
+		}
     	
     	
         // ide valami mozgás smoothener kéne: két koordináta között a 15x15 csatatéren, pl leoszt a gamestate change ami x ms onként jön, valamivel és a pici idoközönként léptet itt amíg nem jön új 
@@ -170,7 +190,10 @@ public class GameField extends MenuPanel implements KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             userInput.add(4);
-
+        }
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+        	mWindow.showPanel(PanelId.GAME_MODE_SELECTOR);            
+        	//ide gamengine megállítása
         }       
     }
 	@Override

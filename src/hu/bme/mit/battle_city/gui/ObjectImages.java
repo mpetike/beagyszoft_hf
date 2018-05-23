@@ -43,7 +43,7 @@ public class ObjectImages {
     BufferedImage explosion2 = null;
     BufferedImage explosion3 = null;
    
-
+    BufferedImage gameOver = null;
 	public ObjectImages() 
 	{
 		initObjects();
@@ -72,6 +72,8 @@ public class ObjectImages {
 		explosion1 = ImageIO.read(new File("images/bullet_explosion_1.png"));
 		explosion2 = ImageIO.read(new File("images/bullet_explosion_2.png"));
 		explosion3 = ImageIO.read(new File("images/bullet_explosion_3.png"));
+		
+		gameOver = ImageIO.read(new File("images/game_over.png"));
 	} catch (IOException e) {
         System.out.println("IOException");
 	}   	  

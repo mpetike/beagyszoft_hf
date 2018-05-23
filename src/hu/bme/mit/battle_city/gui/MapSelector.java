@@ -22,7 +22,7 @@ public class MapSelector extends MenuPanel {
 	GameField gameField;
 	JList<String> list;
 	DefaultListModel<String> model;
-
+	JButton mBtnBack;
 	public MapSelector(Menu menuWindow) {
 		super(menuWindow);
 		setLayout(null);
@@ -30,6 +30,7 @@ public class MapSelector extends MenuPanel {
 		list = new JList<String>(model);
 		JScrollPane pane = new JScrollPane(list);
 		JButton selectButton = new JButton("Select");
+		JButton mBtnBack = new JButton("Back");
 		ArrayList<String> maps = ReadMapDir();
 
 		for (int i = 0; i < maps.size(); i++) {
@@ -41,17 +42,35 @@ public class MapSelector extends MenuPanel {
 				int i = list.getSelectedIndex();
 				if (i >= 0) {
 					menuWindow.currentMap = maps.get(i);
+					
+					if(menuWindow.gameMode)
+					{
+						mWindow.showPanel(PanelId.SERVER_PANEL);
+					}
+					else {
 					mWindow.showPanel(PanelId.GAME_FIELD);
 					//startGame
 					gameField=(GameField) menuWindow.mPanels.get(PanelId.GAME_FIELD);
 					gameField.startGame();
-					
+					}
 				}
 			}
 
 		});
 
-		mBtnBack = getBackButton(PanelId.CHOOSE_DIFFICULTY);
+		mBtnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					if(menuWindow.gameMode)
+					{
+						mWindow.showPanel(PanelId.MULTIPLAYER_PANEL);
+					}
+					else {
+						mWindow.showPanel(PanelId.CHOOSE_DIFFICULTY);
+					}
+				}
+			}
+
+		);
 		pane.setBounds(150, 100, 250, 200);
 		selectButton.setBounds(150, 300, 250, 100);
 		mBtnBack.setBounds(150, 450, 250, 50);
