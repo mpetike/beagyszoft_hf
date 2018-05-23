@@ -17,6 +17,7 @@ public class MultiplayerPanel extends MenuPanel {
 	private JButton mBtnServer;
 	private JButton mBtnClient;
 	private JButton mBtnBack;
+	MapSelector mapSelector;
 	public MultiplayerPanel(Menu menuWindow) {
 		super(menuWindow);
 
@@ -27,7 +28,7 @@ public class MultiplayerPanel extends MenuPanel {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				menuWindow.clientMode = false;
-				mWindow.showPanel(PanelId.SERVER_PANEL);
+				mWindow.showPanel(PanelId.MAP_SELECTOR);
 			}
 		});
 
