@@ -212,7 +212,7 @@ public class GameWorld implements Runnable{
 			System.out.println("Game over man, it's game over");
 			
 		} catch (InterruptedException e) {
-			//Fuck yo exceptions
+			e.printStackTrace();
 		}
 
 	}
