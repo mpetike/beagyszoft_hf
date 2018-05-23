@@ -3,11 +3,14 @@ package hu.bme.mit.battle_city.gui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import hu.bme.mit.battle_city.Network.TCPClient;
+import hu.bme.mit.battle_city.Network.TCPServer;
 import hu.bme.mit.battle_city.gui.Menu.PanelId;
 
 public class ClientPanel extends MenuPanel {
@@ -24,6 +27,8 @@ public class ClientPanel extends MenuPanel {
 	private JButton mBtnAddIP;
 	private JButton mBtnBack;
 	private JTextField tf;
+    JLabel l1; 
+    
 	public ClientPanel(Menu menuWindow) {
 		super(menuWindow);
 		
@@ -39,16 +44,19 @@ public class ClientPanel extends MenuPanel {
 		   
             System.out.println(hostIP);
             
-        	//start tcp client thread
-            //connect to server then switch to gamefield panel
+			l1.setText("Connecting to server..."); 
+			try {
+				menuWindow.client = new TCPClient(menuWindow,hostIP);
+				menuWindow.client.start();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
             
 			}
 		});		
 		
-		
-		
 		setLayout(null);
-	    JLabel l1;  
+ 
 	    l1=new JLabel("Add server IP");  
 		mBtnBack = getBackButton(PanelId.MULTIPLAYER_PANEL);
 		

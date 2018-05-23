@@ -18,7 +18,7 @@ public class GameWorld implements Runnable{
 	@SuppressWarnings("unused")
 	private double TimeElapsed;
 	private int Difficulty;
-	private boolean GameOver;
+	public boolean GameOver;
 	
 	//Game objects
 	public ArrayList<PlayerTank> AlivePlayerTanks;
@@ -28,7 +28,7 @@ public class GameWorld implements Runnable{
 	//Frame timing
 	public int FrameTime = 33;	//ms
 	//Thread variables
-	private Thread GameLogicThread;
+	public Thread GameLogicThread;
 	//Input queues
 	Queue<Integer> LocalPlayerQueue;
 	Queue<Integer> RemotePlayerQueue;
