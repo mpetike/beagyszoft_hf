@@ -14,7 +14,11 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 /**
- * Map selection
+ * Map selector panel class, where you have to choose the map.
+ * In SP mode, or in MP server mode.
+ * Shows the map list.
+ * Buttons: Select, Back
+ * Next panel: ServerPanel or Gamefield
  */
 public class MapSelector extends MenuPanel {
 	private static final long serialVersionUID = 8978172251199097146L;
@@ -23,6 +27,11 @@ public class MapSelector extends MenuPanel {
 	JList<String> list;
 	DefaultListModel<String> model;
 	JButton mBtnBack;
+	
+	/**
+	 * 
+	 * @param menuWindow
+	 */
 	public MapSelector(Menu menuWindow) {
 		super(menuWindow);
 		setLayout(null);
@@ -42,21 +51,21 @@ public class MapSelector extends MenuPanel {
 				int i = list.getSelectedIndex();
 				if (i >= 0) {
 					menuWindow.currentMap = maps.get(i);
-					
-					if(menuWindow.gameMode)
-					{
-				        try{  
-				        	ServerPanel ServerPanel = (ServerPanel) menuWindow.mPanels.get(PanelId.SERVER_PANEL);
-				            String ip=java.net.InetAddress.getLocalHost().getHostAddress();  
-				            ServerPanel.l1.setText("Server IP is: "+ip);  
-				            }catch(Exception ex){System.out.println(ex);}  
+
+					if (menuWindow.gameMode) {
+						try {
+							ServerPanel ServerPanel = (ServerPanel) menuWindow.mPanels.get(PanelId.SERVER_PANEL);
+							String ip = java.net.InetAddress.getLocalHost().getHostAddress();
+							ServerPanel.l1.setText("Server IP is: " + ip);
+						} catch (Exception ex) {
+							System.out.println(ex);
+						}
 						mWindow.showPanel(PanelId.SERVER_PANEL);
-						
-					}
-					else {
-					mWindow.showPanel(PanelId.GAME_FIELD);
-					gameField=(GameField) menuWindow.mPanels.get(PanelId.GAME_FIELD);
-					gameField.startGame();
+
+					} else {
+						mWindow.showPanel(PanelId.GAME_FIELD);
+						gameField = (GameField) menuWindow.mPanels.get(PanelId.GAME_FIELD);
+						gameField.startGame();
 					}
 				}
 			}
@@ -65,15 +74,13 @@ public class MapSelector extends MenuPanel {
 
 		mBtnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					if(menuWindow.gameMode)
-					{
-						mWindow.showPanel(PanelId.MULTIPLAYER_PANEL);
-					}
-					else {
-						mWindow.showPanel(PanelId.CHOOSE_DIFFICULTY);
-					}
+				if (menuWindow.gameMode) {
+					mWindow.showPanel(PanelId.MULTIPLAYER_PANEL);
+				} else {
+					mWindow.showPanel(PanelId.CHOOSE_DIFFICULTY);
 				}
 			}
+		}
 
 		);
 		pane.setBounds(150, 100, 250, 200);
@@ -89,7 +96,10 @@ public class MapSelector extends MenuPanel {
 		add(mBtnBack);
 
 	}
-
+	/**
+	 * Read the map text file names from the default directory.
+	 * @return arraylist of the text file names
+	 */
 	public ArrayList<String> ReadMapDir() {
 		String path = "mapfiles";
 

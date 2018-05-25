@@ -5,13 +5,12 @@ import hu.bme.mit.battle_city.gui.Menu;
 import javax.swing.SwingUtilities;
 
 /**
- * A program belépési pontja
+ * Enter point of the program
  */
 public class BattleCityGame {
 
 	public static void main(String[] args) {
-		// A grafikus felületet a Swing saját eseménykezelo szálán kell
-		// létrehozni
+
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
@@ -20,7 +19,9 @@ public class BattleCityGame {
 			}
 		});
 	}
-
+	/**
+	 * Creates the main menu object and displays it
+	 */
 	private static void showWindow() {
 		Menu mainMenu = new Menu();
 		mainMenu.setSize(600, 640); 

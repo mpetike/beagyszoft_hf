@@ -2,15 +2,13 @@ package hu.bme.mit.battle_city.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Logger;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import hu.bme.mit.battle_city.gui.Menu.PanelId;
 
 /**
- * Panels' common parent 
+ * Panels' common parent
  */
 public abstract class MenuPanel extends JPanel {
 
@@ -18,12 +16,19 @@ public abstract class MenuPanel extends JPanel {
 	protected final Menu mWindow;
 	protected JButton mBtnBack;
 
-	protected final Logger logger = Logger.getLogger(this.getClass().getName());
-
-	public MenuPanel(Menu menuWindow) { // konstruktor
-		mWindow = menuWindow;  // fo menu object átad a létrehozott menupanel leszarmaztatott panelnak: pl chossdiff,gamemodeselector
+	/**
+	 * 
+	 * @param menuWindow
+	 */
+	public MenuPanel(Menu menuWindow) { 
+		mWindow = menuWindow; 
+		
 	}
-
+	/**
+	 * Back button creator on a panel
+	 * @param panel - Panel object to create on
+	 * @return Created button object
+	 */
 	protected JButton getBackButton(PanelId panel) {
 		mBtnBack = new JButton("Back");
 		mBtnBack.addActionListener(new ActionListener() {
@@ -35,23 +40,6 @@ public abstract class MenuPanel extends JPanel {
 		});
 		return mBtnBack;
 	}
-	/*	example to create backbutton 
-	 * 	JButton bck = getBackButton();
-		bck.setBounds(40,240,100,30);
-		add(bck);
-		
-	 *
-	 * Akkor hívódik, amikor a panel megjelenik
-	 */
-	protected void onShow() {
 
-	}
-
-	/**
-	 * Akkor hívódik, amikor a panel helyére másik kerül
-	 */
-	protected void onHide() {
-
-	}
 
 }

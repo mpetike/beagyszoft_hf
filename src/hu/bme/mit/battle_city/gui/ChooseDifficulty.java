@@ -9,7 +9,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 /**
- * MP panel choose between "Join a game" or "Start server"
+ * 
+ * Single player panel class, where you have to choose the difficulty. 
+ * Buttons: Easy, Medium, Hard, Back 
+ * Next panel: Map selector
  */
 public class ChooseDifficulty extends MenuPanel {
 	private static final long serialVersionUID = 8978172251199097146L;
@@ -19,6 +22,9 @@ public class ChooseDifficulty extends MenuPanel {
 	private JButton mBtnHard;
 	private JButton mBtnBack;
 
+	/**
+	 * @param menuWindow
+	 */
 	public ChooseDifficulty(Menu menuWindow) {
 		super(menuWindow);
 

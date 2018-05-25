@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 /**
- * Game mode selector panel MP or SP
+ * Game mode selector panel class, where you have to choose between SP or MP mode.
+ * Buttons: Singleplayer, Multiplayer
+ * Next panel: Choose difficulty or Multiplayer panel
  */
 public class GameModeSelector extends MenuPanel {
 	private static final long serialVersionUID = -1709524252970560013L;
@@ -17,6 +19,10 @@ public class GameModeSelector extends MenuPanel {
 	private JButton mBtnSingleplayer;
 	private JButton mBtnMultiplayer;
 
+	/**
+	 * 
+	 * @param menuWindow
+	 */
 	public GameModeSelector(Menu menuWindow) {
 		super(menuWindow);
 		mBtnMultiplayer = new JButton("Multiplayer");
