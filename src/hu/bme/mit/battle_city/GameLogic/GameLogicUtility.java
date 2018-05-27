@@ -5,7 +5,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
 
-
+/**
+ * Class implementing static functions for use in gameworld
+ * @author Peti
+ *
+ */
 public class GameLogicUtility {	
 	
 	/**

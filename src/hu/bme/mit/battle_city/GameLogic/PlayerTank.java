@@ -21,7 +21,7 @@ public class PlayerTank extends BaseTank{
 		GridLocX = x;
 		GridLocY = y;
 		if(MultiOrSingle == true)
-			Health = 5;
+			Health = 3;
 		else
 			Health = 3;
 		Speed = 3;	//1/3 sec for movement

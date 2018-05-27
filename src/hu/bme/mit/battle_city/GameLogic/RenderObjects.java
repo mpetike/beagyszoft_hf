@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Figure this shit out
+ * Class holding objects needed for rendering the game field, sent to client in multiplayer mode 
  * @author Peti
  *
  */
